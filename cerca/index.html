@@ -64,7 +64,7 @@
 
     /* Vídeos */
     .video-wrap video {
-      width: 100%;
+      width: auto;
       height: auto;
       object-fit: contain;
       display: block;
@@ -74,18 +74,13 @@
 #mainNavbar {
   background-color: #ffffff; /* fondo sólido */
   z-index: 1030;             /* más alto que el contenido */
-  border-radius: 0;          /* opcional */
+  border-radius: 0;       
   transition: background-color 0.3s ease;
 }
 
 /* Navbar oscuro */
 body[data-bs-theme="dark"] #mainNavbar {
   background-color: #2c2c2c;
-}
-
-/* Ajustar el body para que no quede tapado */
-body {
-  padding-top: 70px; /* igual a la altura de la navbar */
 }
 
 
