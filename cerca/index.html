@@ -70,16 +70,59 @@
       display: block;
       border-radius: 12px;
     }
+/* Navbar fija arriba */
+#mainNavbar {
+  background-color: #ffffff; /* fondo sólido */
+  z-index: 1030;             /* más alto que el contenido */
+  border-radius: 0;          /* opcional */
+  transition: background-color 0.3s ease;
+}
+
+/* Navbar oscuro */
+body[data-bs-theme="dark"] #mainNavbar {
+  background-color: #2c2c2c;
+}
+
+/* Ajustar el body para que no quede tapado */
+body {
+  padding-top: 70px; /* igual a la altura de la navbar */
+}
+
+
+/* Texto y hamburguesa */
+#mainNavbar .navbar-brand,
+#mainNavbar .nav-link,
+#themeToggle {
+  color: #000; /* claro */
+}
+
+body[data-bs-theme="dark"] #mainNavbar .navbar-brand,
+body[data-bs-theme="dark"] #mainNavbar .nav-link,
+body[data-bs-theme="dark"] #themeToggle {
+  color: #fff; /* oscuro */
+}
+
+/* Hamburguesa */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+body[data-bs-theme="dark"] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
   </style>
 </head>
 <body data-bs-theme="light">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="https://izeddi.github.io/logo.png" alt="Logo" class="logo rounded-circle me-2">
-        <span class="fw-bold">Web de Ilyas</span>
-      </a>
+<nav id="mainNavbar" class="navbar navbar-expand-lg shadow" style="border-radius:16px; margin:10px; padding:8px 16px;">
+  <div class="container-fluid">
+    <!-- Logo y texto -->
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="https://izeddi.github.io/logo.png" alt="Logo" class="logo rounded-circle me-2">
+      <span class="fw-bold">Web de Ilyas</span>
+    </a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -91,7 +134,6 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="proj1Dropdown">
               <li><a class="dropdown-item" href="https://izeddi.github.io/cerca"><i class="fa-solid fa-code me-1"></i>Recerca Tomàquet</a></li>
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-database me-1"></i> Projecte 1.2</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -111,18 +153,19 @@
     </div>
   </nav>
 
+
   <!-- Contenido -->
   <div class="container content-box">
 <div class="container content-box">
 <div align="center">
-  <h1 style="color:#FF0000;">Comparem tomàquet ecològic i convencional: quin té més nutrients 
+  <h1>Comparem tomàquet ecològic i convencional: quin té més nutrients 
     segons la ciència i segons la IA? </h1>
    </p>  
    </div>
   <p>He trobat diferents articles cientifics que estudien el meu tema i els trobareu a
     continuació en format APA7. APA7 es una forma d'escriure un article científic </p>
      <div align="center">
-  <h1 style="color:#081A41;">Artícle 1</h1>
+  <h1>Artícle 1</h1>
    </p>  
    </div>
   <ul><!--unordered list, llista desordenada-->
@@ -189,7 +232,7 @@ systems on quality and nutritional parameters of processing tomatoes.
     localitzar l’estudi i els mateixos valors, només els ha recopilat, això no sempre passa.</p>
   <p></p>
     <div align="center">
-  <h1 style="color:#081A41;">Artícle 2</h1>
+  <h1>Artícle 2</h1>
    </p>  
    </div>
   <ul><!--unordered list, llista desordenada-->
@@ -216,14 +259,14 @@ systems on quality and nutritional parameters of processing tomatoes.
     ecologicament i convencionalment.</p>
   <p></p>
 <p align="center">
-  <img class="img-fluid rounded shadow-sm my-3" $1src="captura4.1.png">
+  <img class="img-fluid rounded shadow-sm my-3" src="captura4.1.png">
   </p>
   <p></p>
   <p>Com podem veure en la taula que ha generat ChatGPT ens descriu nivells de minerals en mg · 100 g⁻¹ pes fresc 
     dels tomàquets convencionals i ecologics molt similars als de l'artcile cientific. Pero no en tots els casos pot ser similar.</p>
     <p></p>
       <div align="center">
-  <h1 style="color:#081A41;">Artícle 3 </h1>
+  <h1>Artícle 3 </h1>
    </p>  
    </div>
   <ul><!--unordered list, llista desordenada-->
@@ -249,7 +292,7 @@ systems on quality and nutritional parameters of processing tomatoes.
     en tots els casos pot presentar-se una similitud com aquesta.</p>
   <p></p>
  <div align="center">
-  <h1 style="color:#081A41;">Artícle 4 </h1>
+  <h1>Artícle 4 </h1>
    </p>  
    </div>
   <ul>
@@ -291,7 +334,7 @@ P i K també es concentren més a la part superior, especialment en el sòl org�
     cas no sempre passa.</p>
   <p></p>
   <div align="center">
-  <h1 style="color:#081A41;">Artícle 5 </h1>
+  <h1> Artícle 5 </h1>
    </p>  
    </div>
   <ul>
@@ -304,7 +347,7 @@ Braz. Arch. Biol. Technol. v.56 n.4: pp. 521-529</li>
   </ul>
   <p></p>
   <p align="center">
-  <img class="img-fluid rounded shadow-sm my-3" src="captura11.png">
+  <img class="img-fluid rounded shadow-sm my-3" $1src="captura11.png">
   </p>
   <p>Segons un estudi brasiler, els tomàquets cultivats de manera orgànica 
     tenien més àcid ascòrbic (641 mg/100 g pes sec) i més fenols totals (4467 mg/100 g pes sec) 
@@ -318,7 +361,7 @@ Braz. Arch. Biol. Technol. v.56 n.4: pp. 521-529</li>
     coincideixen amb els que jo havia trobat a l'artícle. Tot i això, això no sempre passa   </p>
   <p></p> 
   <div align="center">
-  <h1 style="color:#081A41;">Diferents Reaccions de la IA </h1>
+  <h1>Diferents Reaccions de la IA </h1>
    </p>  
    </div>
    <p></p>
@@ -359,7 +402,7 @@ Ara ChatGPT és més precís per diverses raons:</li>
   </ul>
 </p>
    <div align="center">
-  <h1 style="color:#081A41;">Vídeos Explicatius</h1>
+  <h1>Vídeos Explicatius</h1>
    </p>  
    </div>
    <p></p> 
