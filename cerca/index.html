@@ -158,10 +158,10 @@ body[data-bs-theme="dark"] .navbar-toggler-icon {
    </div>
   <p>He trobat diferents articles cientifics que estudien el meu tema i els trobareu a
     continuació en format APA7. APA7 es una forma d'escriure un article científic </p>
-     <div align="center">
-  <h1>Artícle 1</h1>
+<div align="center">
+<div align="center" class="content-box article" data-aos="fade-up">
+<h1>Artícle 1</h1>
    </p>  
-   </div>
   <ul><!--unordered list, llista desordenada-->
    <li>Pieper J.R, Barret D.M.(2008) Effects of organic and conventional production
 systems on quality and nutritional parameters of processing tomatoes. 
@@ -225,10 +225,11 @@ systems on quality and nutritional parameters of processing tomatoes.
     ChatGPT va cercar i 
     localitzar l’estudi i els mateixos valors, només els ha recopilat, això no sempre passa.</p>
   <p></p>
+</div>
     <div align="center">
+   <div align="center" class="content-box article" data-aos="fade-up">
   <h1>Artícle 2</h1>
    </p>  
-   </div>
   <ul><!--unordered list, llista desordenada-->
    <li>Ilić S. Zoran, Kapoulas Nikolaos and Šunić Ljubomir (2014) Tomato Fruit Quality from Organic 
      and Conventional Production. 
@@ -259,10 +260,11 @@ systems on quality and nutritional parameters of processing tomatoes.
   <p>Com podem veure en la taula que ha generat ChatGPT ens descriu nivells de minerals en mg · 100 g⁻¹ pes fresc 
     dels tomàquets convencionals i ecologics molt similars als de l'artcile cientific. Pero no en tots els casos pot ser similar.</p>
     <p></p>
+   </div>
       <div align="center">
+    <div align="center" class="content-box article" data-aos="fade-up">
   <h1>Artícle 3 </h1>
    </p>  
-   </div>
   <ul><!--unordered list, llista desordenada-->
    <li>Nikolaos Kapoulas Zoran S. Ilić Mihal Đurovka Radmila Trajković 
      and Lidija Milenković (2011) Effect of organic and conventional production practices on nutritional 
@@ -285,10 +287,11 @@ systems on quality and nutritional parameters of processing tomatoes.
     en els tomàquets cultivats de manera convencional i ecologica són iguals que els de l'article cientific. Però no 
     en tots els casos pot presentar-se una similitud com aquesta.</p>
   <p></p>
+    </div>
  <div align="center">
+   <div align="center" class="content-box article" data-aos="fade-up">
   <h1>Artícle 4 </h1>
    </p>  
-   </div>
   <ul>
   <li>Zoran S. Ilić1 Nikolaos Kapoulas Ljubomir Šunić Dragoljub Beković1 Nataša Mirecki (2014) 
 Heavy Metals and Nitrate Content in Tomato
@@ -327,10 +330,11 @@ P i K també es concentren més a la part superior, especialment en el sòl org�
     els va cercar en els estudis originals i va confirmar que coincidien amb els meus, però aquest 
     cas no sempre passa.</p>
   <p></p>
+   </div>
   <div align="center">
+  <div align="center" class="content-box article" data-aos="fade-up">
   <h1> Artícle 5 </h1>
    </p>  
-   </div>
   <ul>
   <li>Renata Galhardo Borguini Deborah Helena Markowicz Bastos José Machado MoitaNeto Fernanda Sobral Capasso2
  and Elizabeth Aparecida Ferraz da Silva Torres (2013) 
@@ -354,10 +358,11 @@ Braz. Arch. Biol. Technol. v.56 n.4: pp. 521-529</li>
   <p>ChatGPT va crear la taula, i jo he confirmat que 
     coincideixen amb els que jo havia trobat a l'artícle. Tot i això, això no sempre passa   </p>
   <p></p> 
+  </div>
   <div align="center">
+  <div align="center" class="content-box article" data-aos="fade-up">
   <h1>Diferents Reaccions de la IA </h1>
    </p>  
-   </div>
    <p></p>
   <p align="center">
   <img class="img-fluid rounded shadow-sm my-3" src="reaccio1.png">
@@ -395,7 +400,9 @@ Ara ChatGPT és més precís per diverses raons:</li>
 <li>Manté un format coherent: això redueix errors i fa que les dades siguin més clares.</li>
   </ul>
 </p>
+  </div>
    <div align="center">
+   <div align="center" class="content-box article" data-aos="fade-up">
   <h1>Vídeos Explicatius</h1>
    </p>  
    </div>
@@ -459,6 +466,13 @@ btn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000, // duración de la animación
+    once: true     
+  });
+</script>
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </body>
 </html>
