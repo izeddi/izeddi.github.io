@@ -62,55 +62,87 @@
   </style>
 </head>
 <body class="bg-slate-950 text-slate-200 antialiased">
-   <!-- Navbar -->
-  <nav id="mainNavbar" class="navbar navbar-expand-lg shadow" style="border-radius:16px; margin:10px; padding:8px 16px;">
-  <div class="container-fluid">
-    <!-- Logo y texto -->
-    <a class="navbar-brand d-flex align-items-center" href="https://izeddi.github.io">
-      <img src="https://izeddi.github.io/logo.png" alt="Logo" class="logo rounded-circle me-2">
-      <span class="fw-bold">Web de Ilyas</span>
+<nav class="bg-slate-900 border border-slate-700 rounded-2xl mx-4 mt-4 px-4 py-3 shadow-lg">
+  <div class="flex items-center gap-8">
+    
+    <!-- Logo -->
+    <a href="https://izeddi.github.io" class="flex items-center gap-3">
+      <img src="https://izeddi.github.io/logo.png" class="w-10 h-10 rounded-full">
+      <span class="font-bold text-white text-lg">Web de Ilyas</span>
     </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="proj1Dropdown" role="button" data-bs-toggle="dropdown">
-              <i class="fa-solid fa-diagram-project me-1"></i> Cerca IA vs Google Academic
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="proj1Dropdown">
-              <li><a class="dropdown-item" href="https://izeddi.github.io/cerca"><i class="fa-solid fa-seedling me-1"></i>Recerca Tomàquet</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="proj2Dropdown" role="button" data-bs-toggle="dropdown">
-              <i class="fa-solid fa-folder-open me-1"></i> 22 dies en 22 peus
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="proj2Dropdown">
-              <li><a class="dropdown-item" href="https://izeddi.github.io/introduccio"><i class="fa-solid fa-file-lines me-1"></i> Introducció al Projecte</a></li>
-              <li><a class="dropdown-item" href="https://izeddi.github.io/vectors"><i class="fa-solid fa-compass me-1"></i> Calculem rumbs amb vectors</a></li>
-              <li><a class="dropdown-item" href="https://izeddi.github.io/distancies"><i class="fa-solid fa-arrows-left-right-to-line me-1"></i> Calculem distancies amb GPS</a></li>
-            </ul>
-          </li>
-         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="proj3Dropdown" role="button" data-bs-toggle="dropdown">
-              <i class="fa-solid fa-folder-open me-1"></i> Contaminació i Salut al Baix Llobregat
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="proj3Dropdown">
-              <li><a class="dropdown-item" href="https://izeddi.github.io/contaminacio"><i class="fa-solid fa-head-side-mask me-1"></i>Contaminació i Salut Respiratòria a El Prat (Sagnier)</a></li>
-              <li><a class="dropdown-item" href="https://izeddi.github.io/epi"><i class="fa-solid fa-head-side-mask me-1"></i>Environmental Epidemiological Analysis</a></li>
-              <li><a class="dropdown-item" href="https://izeddi.github.io/dlnm"><i class="fa-solid fa-smog me-1"></i> Distributed Lag Non-linear Models</a></li>
-              <li><a class="dropdown-item" href="https://izeddi.github.io/epidemiologia"><i class="fa-solid fa-industry me-1"></i> Resultats de El Prat (Sagnier)</a></li>
-            </ul>
-          </li>
-        </ul>
-    <button id="themeToggle" class="ms-2 btn">
-          <i class="fa-solid fa-moon"></i>
+    <!-- Botón móvil -->
+    <button id="menuBtn" class="lg:hidden text-white text-2xl">☰</button>
+
+    <!-- Menú -->
+    <div id="menu" class="hidden lg:flex gap-6 items-center text-sm">
+
+      <!-- Dropdown 1 -->
+      <div class="relative">
+        <button onclick="toggleDropdown('dd1')" class="text-slate-300 hover:text-white">
+          Cerca IA vs Google Academic
+        </button>
+        <div id="dd1" class="hidden absolute left-0 bg-slate-800 border border-slate-600 rounded-xl mt-2 p-2 min-w-[220px]">
+          <a href="https://izeddi.github.io/cerca" class="block px-3 py-2 hover:bg-slate-700 rounded-lg">
+            Recerca Tomàquet
+          </a>
+        </div>
       </div>
+
+      <!-- Dropdown 2 -->
+      <div class="relative">
+        <button onclick="toggleDropdown('dd2')" class="text-slate-300 hover:text-white">
+          22 dies en 22 peus
+        </button>
+        <div id="dd2" class="hidden absolute left-0 bg-slate-800 border border-slate-600 rounded-xl mt-2 p-2 min-w-[300px]">
+          <a href="https://izeddi.github.io/introduccio" class="block px-3 py-2 hover:bg-slate-700 rounded-lg">
+            Introducció al Projecte
+          </a>
+          <a href="https://izeddi.github.io/vectors" class="block px-3 py-2 hover:bg-slate-700 rounded-lg">
+            Calculem rumbs amb vectors
+          </a>
+          <a href="https://izeddi.github.io/distancies" class="block px-3 py-2 hover:bg-slate-700 rounded-lg">
+            Calculem distancies amb GPS
+          </a>
+        </div>
+      </div>
+
+      <!-- Dropdown 3 -->
+      <div class="relative">
+        <button onclick="toggleDropdown('dd3')" class="text-slate-300 hover:text-white">
+          Contaminació i Salut al Baix Llobregat
+        </button>
+        <div id="dd3" class="hidden absolute left-0 bg-slate-800 border border-slate-600 rounded-xl mt-2 p-2 min-w-[260px]">
+          <a href="https://izeddi.github.io/contaminacio" class="block px-3 py-2 hover:bg-slate-700 rounded-lg">
+            Contaminació i Salut Respiratòria a El Prat (Sagnier)
+          </a>
+          <a href="https://izeddi.github.io/epi" class="block px-3 py-2 hover:bg-slate-700 rounded-lg">
+            Environmental Epidemiological Analysis
+          </a>
+          <a href="https://izeddi.github.io/dlnm" class="block px-3 py-2 hover:bg-slate-700 rounded-lg">
+            Distributed Lag Non-linear Models
+          </a>
+          <a href="https://izeddi.github.io/epidemiologia" class="block px-3 py-2 hover:bg-slate-700 rounded-lg">
+            Resultats de El Prat (Sagnier)
+          </a>
+        </div>
+      </div>
+
     </div>
-  </nav>
+  </div>
+
+  <!-- Menú móvil -->
+  <div id="mobileMenu" class="hidden flex-col gap-2 mt-4 lg:hidden text-sm">
+    <a href="https://izeddi.github.io/cerca" class="block px-3 py-2 bg-slate-800 rounded-lg">Recerca Tomàquet</a>
+    <a href="https://izeddi.github.io/introduccio" class="block px-3 py-2 bg-slate-800 rounded-lg">Introducció al Projecte</a>
+    <a href="https://izeddi.github.io/vectors" class="block px-3 py-2 bg-slate-800 rounded-lg">Calculem rumbs amb vectors</a>
+    <a href="https://izeddi.github.io/distancies" class="block px-3 py-2 bg-slate-800 rounded-lg">Calculem distancies amb GPS</a>
+    <a href="https://izeddi.github.io/contaminacio" class="block px-3 py-2 bg-slate-800 rounded-lg">Contaminació i Salut Respiratòria</a>
+    <a href="https://izeddi.github.io/epi" class="block px-3 py-2 bg-slate-800 rounded-lg">Environmental Epidemiological Analysis</a>
+    <a href="https://izeddi.github.io/dlnm" class="block px-3 py-2 bg-slate-800 rounded-lg">DLNM</a>
+    <a href="https://izeddi.github.io/epidemiologia" class="block px-3 py-2 bg-slate-800 rounded-lg">Resultats</a>
+  </div>
+</nav>
   <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="bg-gradient-to-r from-sky-600 to-emerald-600 rounded-2xl sm:rounded-3xl shadow-xl mt-4 sm:mt-6 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
@@ -899,19 +931,27 @@
       initModal();
       console.log('✅ Application ready – robust error handling added');
     };
+function toggleDropdown(id) {
+  // cerrar todos
+  document.querySelectorAll('[id^="dd"]').forEach(el => {
+    if (el.id !== id) el.classList.add('hidden');
+  });
+
+  // abrir/cerrar el clicado
+  document.getElementById(id).classList.toggle('hidden');
+}
+
+// cerrar si haces clic fuera
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.relative')) {
+    document.querySelectorAll('[id^="dd"]').forEach(el => el.classList.add('hidden'));
+  }
+});
+
+// menú móvil
+document.getElementById('menuBtn')?.addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('hidden');
+});
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
