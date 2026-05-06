@@ -178,9 +178,139 @@
       padding: .08rem .4rem;
       font-size: .85em;
     }
+    <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7f7f7;
+
+    }
+  body[data-bs-theme="dark"] {
+      background: #1f1f1f;
+    }
+  body[data-bs-theme="dark"] .navbar {
+      background: rgba(40, 40, 40, 0.6);
+    }
+  body[data-bs-theme="dark"] .card, body[data-bs-theme="dark"] video {
+      box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+    }
+
+    /* 4. Logo circular i adaptatiu */
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    @media (max-width: 576px) {
+      .logo {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    @media (min-width: 992px) {
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    /* Contenedores para mejorar diseño */
+    .content-box {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    body[data-bs-theme="dark"] .content-box {
+      background: #2c2c2c;
+      box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+    }
+
+    /* Títulos centrados */
+    h1, h3 {
+      text-align: center;
+      margin: 20px 0;
+    }
+¡
+/* Navbar fija arriba */
+#mainNavbar {
+  background-color: #ffffff; /* fondo sólido */
+  z-index: 1030;             /* más alto que el contenido */
+  border-radius: 0;       
+  transition: background-color 0.3s ease;
+}
+
+
+/* Texto y hamburguesa */
+#mainNavbar .navbar-brand,
+#mainNavbar .nav-link,
+#themeToggle {
+  color: #000; /* claro */
+}
+
+body[data-bs-theme="dark"] #mainNavbar .navbar-brand,
+body[data-bs-theme="dark"] #mainNavbar .nav-link,
+body[data-bs-theme="dark"] #themeToggle {
+  color: #fff; /* oscuro */
+}
+
+/* Hamburguesa */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+body[data-bs-theme="dark"] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
   </style>
 </head>
 <body>
+  <nav id="mainNavbar" class="navbar navbar-expand-lg shadow" style="border-radius:16px; margin:10px; padding:8px 16px;">
+  <div class="container-fluid">
+    <!-- Logo y texto -->
+    <a class="navbar-brand d-flex align-items-center" href="https://izeddi.github.io">
+      <img src="https://izeddi.github.io/logo.png" alt="Logo" class="logo rounded-circle me-2">
+      <span class="fw-bold">Web de Ilyas</span>
+    </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj1Dropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-diagram-project me-1"></i> Cerca IA vs Google Academic
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj1Dropdown">
+              <li><a class="dropdown-item" href="https://izeddi.github.io/cerca"><i class="fa-solid fa-seedling me-1"></i>Recerca Tomàquet</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj2Dropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-folder-open me-1"></i> 22 dies en 22 peus
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj2Dropdown">
+              <li><a class="dropdown-item" href="https://izeddi.github.io/introduccio"><i class="fa-solid fa-file-lines me-1"></i> Introducció al Projecte</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/vectors"><i class="fa-solid fa-compass me-1"></i> Calculem rumbs amb vectors</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/distancies"><i class="fa-solid fa-arrows-left-right-to-line me-1"></i> Calculem distancies amb GPS</a></li>
+            </ul>
+          </li>
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj3Dropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-folder-open me-1"></i> Contaminació i Salut al Baix Llobregat
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj3Dropdown">
+              <li><a class="dropdown-item" href="https://izeddi.github.io/contaminacio"><i class="fa-solid fa-head-side-mask me-1"></i>Contaminació i Salut Respiratòria a El Prat (Sagnier)</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/epi"><i class="fa-solid fa-head-side-mask me-1"></i>Environmental Epidemiological Analysis</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/dlnm"><i class="fa-solid fa-smog me-1"></i> Distributed Lag Non-linear Models</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/epidemiologia"><i class="fa-solid fa-industry me-1"></i> Resultats de El Prat (Sagnier)</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <header class="hero text-center">
     <div class="container">
       <h1 class="display-5 fw-bold mb-3"><i class="fa-solid fa-chart-line text-info me-2"></i>DLNM Explorer</h1>
@@ -914,38 +1044,3 @@ els.demoDataset.addEventListener('change', async (e) => {
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
