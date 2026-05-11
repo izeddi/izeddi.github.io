@@ -1,13 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.17.0/dist/algoliasearch.umd.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌫️ Problema · Contaminació i infeccions respiratòries · El Prat (Sagnier)</title>
     <!-- MathJax per renderitzar equacions -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -181,182 +182,125 @@
             .card { padding: 20px 16px; }
             h1 { font-size: 1.9rem; }
         }
+        /* Navbar fija arriba */
+#mainNavbar {
+  background-color: #ffffff; /* fondo sólido */
+  z-index: 1030;             /* más alto que el contenido */
+  border-radius: 0;       
+  transition: background-color 0.3s ease;
+}
+
+/* Navbar oscuro */
+body[data-bs-theme="dark"] #mainNavbar {
+  background-color: #2c2c2c;
+}
+
+
+/* Texto y hamburguesa */
+#mainNavbar .navbar-brand,
+#mainNavbar .nav-link,
+#themeToggle {
+  color: #000; /* claro */
+}
+
+body[data-bs-theme="dark"] #mainNavbar .navbar-brand,
+body[data-bs-theme="dark"] #mainNavbar .nav-link,
+body[data-bs-theme="dark"] #themeToggle {
+  color: #fff; /* oscuro */
+}
+
+/* Hamburguesa */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+body[data-bs-theme="dark"] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+/* 4. Logo circular i adaptatiu */
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    @media (max-width: 576px) {
+      .logo {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    @media (min-width: 992px) {
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7f7f7;
+
+    }
+  body[data-bs-theme="dark"] {
+      background: #1f1f1f;
+    }
+  body[data-bs-theme="dark"] .navbar {
+      background: rgba(40, 40, 40, 0.6);
+    }
+  body[data-bs-theme="dark"] .card, body[data-bs-theme="dark"] video {
+      box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+    }
     </style>
 </head>
 <body>
-<!-- BOOTSTRAP + FONT AWESOME -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-/* NAVBAR */
-#mainNavbar{
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid #cbdcd2;
-    position: sticky;
-    top: 10px;
-    z-index: 9999;
-}
-
-#mainNavbar .navbar-brand{
-    color:#0a3227;
-    font-size:1.2rem;
-}
-
-#mainNavbar .nav-link{
-    color:#1a4d3c;
-    font-weight:500;
-    transition:0.2s;
-}
-
-#mainNavbar .nav-link:hover{
-    color:#2e7d5e;
-}
-
-#mainNavbar .dropdown-menu{
-    border:none;
-    border-radius:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    padding:10px;
-}
-
-#mainNavbar .dropdown-item{
-    border-radius:10px;
-    padding:10px 14px;
-    transition:0.2s;
-}
-
-#mainNavbar .dropdown-item:hover{
-    background:#eef7f2;
-}
-
-.logo{
-    width:42px;
-    height:42px;
-    object-fit:cover;
-}
-
-/* IMPORTANTE */
-body{
-    padding-top: 10px !important;
-}
-</style>
-
-<!-- NAVBAR -->
-<nav id="mainNavbar" class="navbar navbar-expand-lg shadow" style="border-radius:16px; margin:10px;">
+<nav id="mainNavbar" class="navbar navbar-expand-lg shadow" style="border-radius:16px; margin:10px; padding:8px 16px;">
   <div class="container-fluid">
-
-    <!-- LOGO -->
-    <a class="navbar-brand d-flex align-items-center me-4" href="https://izeddi.github.io">
+    <!-- Logo y texto -->
+    <a class="navbar-brand d-flex align-items-center" href="https://izeddi.github.io">
       <img src="https://izeddi.github.io/logo.png" alt="Logo" class="logo rounded-circle me-2">
       <span class="fw-bold">Web de Ilyas</span>
     </a>
 
-    <!-- BOTÓN MÓVIL -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- DROPDOWNS -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-
-      <!-- ESTO LOS PEGA A LA IZQUIERDA -->
-      <ul class="navbar-nav mb-2 mb-lg-0">
-
-        <!-- DROPDOWN 1 -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="proj1Dropdown" role="button" data-bs-toggle="dropdown">
-            <i class="fa-solid fa-diagram-project me-1"></i>
-            Cerca IA vs Google Academic
-          </a>
-
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="https://izeddi.github.io/cerca">
-                <i class="fa-solid fa-seedling me-1"></i>
-                Recerca Tomàquet
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <!-- DROPDOWN 2 -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="proj2Dropdown" role="button" data-bs-toggle="dropdown">
-            <i class="fa-solid fa-folder-open me-1"></i>
-            22 dies en 22 peus
-          </a>
-
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="https://izeddi.github.io/introduccio">
-                <i class="fa-solid fa-file-lines me-1"></i>
-                Introducció al Projecte
-              </a>
-            </li>
-
-            <li>
-              <a class="dropdown-item" href="https://izeddi.github.io/vectors">
-                <i class="fa-solid fa-compass me-1"></i>
-                Calculem rumbs amb vectors
-              </a>
-            </li>
-
-            <li>
-              <a class="dropdown-item" href="https://izeddi.github.io/distancies">
-                <i class="fa-solid fa-arrows-left-right-to-line me-1"></i>
-                Calculem distancies amb GPS
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <!-- DROPDOWN 3 -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="proj3Dropdown" role="button" data-bs-toggle="dropdown">
-            <i class="fa-solid fa-folder-open me-1"></i>
-            Contaminació i Salut al Baix Llobregat
-          </a>
-
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="https://izeddi.github.io/contaminacio">
-                <i class="fa-solid fa-head-side-mask me-1"></i>
-                Contaminació i Salut Respiratòria a El Prat (Sagnier)
-              </a>
-            </li>
-
-            <li>
-              <a class="dropdown-item" href="https://izeddi.github.io/epi">
-                <i class="fa-solid fa-head-side-mask me-1"></i>
-                Environmental Epidemiological Analysis
-              </a>
-            </li>
-
-            <li>
-              <a class="dropdown-item" href="https://izeddi.github.io/dlnm">
-                <i class="fa-solid fa-smog me-1"></i>
-                Distributed Lag Non-linear Models
-              </a>
-            </li>
-
-            <li>
-              <a class="dropdown-item" href="https://izeddi.github.io/epidemiologia">
-                <i class="fa-solid fa-industry me-1"></i>
-                Resultats de El Prat (Sagnier)
-              </a>
-            </li>
-          </ul>
-        </li>
-
-      </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj1Dropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-diagram-project me-1"></i> Cerca IA vs Google Academic
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj1Dropdown">
+              <li><a class="dropdown-item" href="https://izeddi.github.io/cerca"><i class="fa-solid fa-seedling me-1"></i>Recerca Tomàquet</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj2Dropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-folder-open me-1"></i> 22 dies en 22 peus
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj2Dropdown">
+              <li><a class="dropdown-item" href="https://izeddi.github.io/introduccio"><i class="fa-solid fa-file-lines me-1"></i> Introducció al Projecte</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/vectors"><i class="fa-solid fa-compass me-1"></i> Calculem rumbs amb vectors</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/distancies"><i class="fa-solid fa-arrows-left-right-to-line me-1"></i> Calculem distancies amb GPS</a></li>
+            </ul>
+          </li>
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj3Dropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-folder-open me-1"></i> Contaminació i Salut al Baix Llobregat
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj3Dropdown">
+              <li><a class="dropdown-item" href="https://izeddi.github.io/contaminacio"><i class="fa-solid fa-head-side-mask me-1"></i>Contaminació i Salut Respiratòria a El Prat (Sagnier)</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/epi"><i class="fa-solid fa-head-side-mask me-1"></i>Environmental Epidemiological Analysis</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/dlnm"><i class="fa-solid fa-smog me-1"></i> Distributed Lag Non-linear Models</a></li>
+              <li><a class="dropdown-item" href="https://izeddi.github.io/epidemiologia"><i class="fa-solid fa-industry me-1"></i> Resultats de El Prat (Sagnier)</a></li>
+            </ul>
+          </li>
+        </ul>
+    <button id="themeToggle" class="ms-2 btn">
+          <i class="fa-solid fa-moon"></i>
+      </div>
     </div>
-  </div>
-</nav>
-
-<!-- BOOTSTRAP SCRIPT -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </nav>
 <div class="container">
     <!-- TÍTOL I CONTEXT -->
     <div class="card">
@@ -364,7 +308,7 @@ body{
             <div>
                 <h1>🌫️ Com afecta la contaminació aèria a les incidències d'infeccions respiratòries diàries?</h1>
                 <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px;">
-                    <span class="badge">📍 El Prat (Sagnier) · 2011 – 2025</span>
+                    <span class="badge">📍 El Prat (Sagnier) · 2012 – 2025</span>
                     <span class="badge">📊 5191 dies analitzats</span>
                     <span class="badge">🧪 Epidemiologia ambiental</span>
                 </div>
@@ -437,19 +381,17 @@ body{
             </ul>
             <div class="formula-block">
                 \[
-                RR = \frac{I_{\text{exposats}}}{I_{\text{no exposats}}} = \frac{1.98}{1.85} \approx 1.07
+                RR = \frac{I_{\text{exposats}}}{I_{\text{no exposats}}} = \frac{1.98}{1.85} \approx 1.92
                 \]
                 \[
-                AR = I_{\text{exposats}} - I_{\text{no exposats}} = 1.98 - 1.85 = 0.13 \text{ casos/1000}
+                AR = I_{\text{exposats}} - I_{\text{no exposats}} = 1.98 - 1.85 = 0.22 \text{ casos/1000}
                 \]
                 \[
-                AR\% = \frac{AR}{I_{\text{exposats}}} \times 100 = \frac{0.13}{1.98} \times 100 \approx 6.5\%
+                AR\% = \frac{AR}{I_{\text{exposats}}} \times 100 = \frac{0.22}{1.98} \times 100 \approx 13.75\%
                 \]
             </div>
             <p>Interval de confiança del 95% per al RR: \([1.06,\,1.08]\), \(p<0.001\).</p>
-            <p><strong>Conclusió:</strong> RR > 1 indica un efecte nociu. L'efecte perjudicial del NO₂ fa que hi hagi un 7% més de casos d'infeccions respiratories perquè el risc relatiu es 1,07.</p> 
-            <p>El 6.5% de la incidència en dies amb NO₂ elevat és atribuïble a la superació del límit OMS perquè el risc atribuit al percentatge, AR% és 6.5.</p> 
-            <p> Això equival a un excés de 0.13 casos per cada 1000 habitants i dia. Com al Prat de Llobregat són 66000 habitants hi hauran 0.13 x 66 = 9 caosos al El Prat causats per la contaminació.</p>
+            <p><strong>Conclusió:</strong> RR > 1 indica un efecte nociu. El 13.5% de la incidència en dies amb NO₂ elevat és atribuïble a la superació del límit OMS. Això equival a un excés de 0.22 casos per cada 1000 habitants i dia.</p>
         </div>
 
         <!-- PAS 3 -->
@@ -494,7 +436,7 @@ body{
 
         <!-- PAS 5 -->
         <div class="step">
-            <div class="step-header"><span class="step-num">5</span><span style="font-size: 1.4rem; font-weight: 600;">Tendències temporals (2011-2025)</span></div>
+            <div class="step-header"><span class="step-num">5</span><span style="font-size: 1.4rem; font-weight: 600;">Tendències temporals (2012-2025)</span></div>
             <p>L'anàlisi de tendència mostra una lleugera reducció de la incidència mitjana a partir de 2020, possiblement per millores en la qualitat de l'aire i canvis en mobilitat. No obstant això, els hiverns continuen presentant pics associats a NO₂ elevat.</p>
             <div style="display: flex; gap: 20px; justify-content: space-around; background: #e2eee7; border-radius: 24px; padding: 16px;">
                 <div><strong>2012-2019</strong><br>Incid. mitjana ≈ 1.58</div>
@@ -521,31 +463,31 @@ body{
         </div>
         <hr style="margin: 24px 0 12px; border-top: 2px solid #bdd6ca;">
         <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
-            <span style="background: #1b4e3f; color: white; padding: 6px 24px; border-radius: 60px;">📍 Dades reals processades · El Prat (Sagnier)</span>
-            <span class="badge">🌫️ C₆H₆ · CO · NO₂ · NOX · NO₂ · O₃ · SO₂ · 5108 dies</span>
+            <span style="background: #1b4e3f; color: white; padding: 6px 24px; border-radius: 60px;">📍 Dades reals processades · Martorell</span>
+            <span class="badge">🌫️ NO₂ · PM · O₃ · SO₂ · 5108 dies</span>
             <span style="margin-left: auto; font-style: italic;">Anàlisi estil OMS · Educatiu</span>
         </div>
         <p class="footnote" style="margin-top: 18px;">
-            * Els càlculs es basen en el conjunt de dades obtingudes de servidors de la Generalitat de Catalunya de El Prat (Sagnier) i municipis propers. Totes les fórmules s'han verificat amb les mitjanes i recomptes indicats.
+            * Els càlculs es basen en el conjunt de dades obtingudes de servidors de la Generalitat de Catalunya de Martorell i municipis propers. Totes les fórmules s'han verificat amb les mitjanes i recomptes indicats.
         </p>
     </div>
-<p> </p>
-</div>
- <div class="card">
+<div class="card">
 <h1>Model DLNM (Model No Lineal de Retard Distribuït)</h1>
     <p>Aquest model matemàtic va ser creat per Gasparrini <i>et al.</i> (2010)</p>
     <p>Els contaminants tenen un temps de retard respecte a la salut, es a dir, no hi ha un efecte inmediat sempre.
         Moltes vegades poden tenir un efecte més tard.</p>
     <p>Aquests models no son lineals perquè si fos lineal significaria que un augment de contaminació provoca un augment
         proporcional de casos respiratoris. Encara que sembla lògic no és exactament així perquè un augment de 5 &micro;g/m<sup>3</sup>
-        de NO<sub>2</sub> no es el mateix si augmenta de 5 a 10 com si augmenta de 40 a 45, es a dir, és una corba i no una és una recta. 
+        de NO<sub>2</sub> no es el mateix si augmenta de 5 a 10 com si augmenta de 40 a 45, es a dir, és una corba i no una és una recta.
         Els retards s'anomenen LAG i poden ser igual a 0 (no hi ha retard) o igual a qualsevol número entre 0 i 14. Si LAG es igual a 14
-        vol dir que passen 2 setmanes entre el pic del contaminant i el pic de problemes de salut.</p></div>
+        vol dir que passen 2 setmanes entre el pic del contaminant i el pic de problemes de salut.</p>
 <p> Gasparrini, A. ; Armstrong, B. ; Kenward, M.G. (2010). Distributed lag non-linear models. Stat. Med. 29 (21):2224-34. doi: <a href="https://doi.org/10.1002/sim.3940">https://doi.org/10.1002/sim.3940</a></p>
-
+</div>
+    <!-- Nota final MathJax -->
     <div style="text-align: right; opacity: 0.7; font-size: 0.8rem;">Equacions renderitzades amb MathJax · Problema epidemiològic ambiental</div>
-    
-    <script>
+</div>
+
+<script>
     window.addEventListener('load', function() {
         if (window.MathJax) {
             MathJax.typesetPromise();
