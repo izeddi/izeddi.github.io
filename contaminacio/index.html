@@ -339,17 +339,46 @@ In addition, we analyzed health data from the SIVIC system and compared it with 
 That's why, the study indicates that air quality can have an impact on public health, highlighting the importance of monitoring pollution levels and reducing emissions to protect people’s health.</li>
 <p></p>
   <div align="center" data-aos="fade-up">
-  <h2>What is the Origin of Air Pollution in El Prat (Sagnier)</h2>
+  <h1>What is the Origin of Air Pollution in El Prat (Sagnier)</h1>
      <img class="img-fluid rounded shadow-sm my-3" src="pollutionrose(no2).png">
-  <p>To know the origin of air pollution in El Prat (Sagnier) is easy with RStudio</p>
+  <p><li>To know the origin of air pollution in El Prat (Sagnier) is easy with RStudio</li></p>
   <p></p>
-  <p>We only need data in columns named WS for wind speed, WD for wind direction and to choose a pollutant e.g.: NO<sub>2</sub>. These are conditions of the openair library
-  in order to create a pollution rose with the instruction: <code>pollutionRose(cityall, pollutant="no2")</code></p>
+  <p><li>We only need data in columns named WS for wind speed, WD for wind direction and to choose a pollutant e.g.: NO<sub>2</sub>. These are conditions of the openair library
+  in order to create a pollution rose with the instruction: <code>pollutionRose(cityall, pollutant="no2")</code></li></p>
   <p></p>
-  <p>As you can see in the following image air pollution of El Prat (Sagnier) comes form L'Hospitalet de LLobregat city area.</p>
- <img class="img-fluid rounded shadow-sm my-3" src="googlemaps.png">
-    
+  <p><li>This is a Pollution Rose. It works like a compass, showing exactly which 
+    direction the wind blows from when the air in El Prat contains high levels of Nitrogen Dioxide (NO<sub>2</sub>).</li></p>
+    <p><li>The Petals: The length of each section shows how often the wind blows from that direction.The Colors: Orange and dark red represent high pollution levels. 
+    Green and yellow represent clean air.</li></p>
+    <p><li>The Colors: Orange and dark red represent high pollution levels. Green and yellow represent clean air.</li></p>
+    <p><li>As you can see in the following image air pollution of El Prat (Sagnier) comes form L'Hospitalet de LLobregat city area.</li></p>
 </ul></div>
+
+    <img class="img-fluid rounded shadow-sm my-3" src="googlemaps.png">
+  <p></p>  
+    <div align="center" data-aos="fade-up"> 
+      
+<h2>Polar Plot</h2>
+      <p></p>
+  <img class="img-fluid rounded shadow-sm my-3" src="polarPlot(no2).png">
+      <p></p>
+<p><li>The Polar Plot goes a step further than the previous graph. It shows how pollution changes based on two things at the same time: 
+  the direction of the wind and the speed of the wind.</li></p>
+  <p><li>Distance from the center: The closer to the center , the weaker the wind is. The further out, the stronger the wind blows.</li></p>
+  <p><li>The Colors: Purple and dark red show the highest pollution (NO<sub>2</sub>). Blue and green show clean air.</li></p>
+  <p><li>The highest pollution (dark purple) happens right in the center when the wind speed is nearly zero. When the air does not move, 
+  traffic emissions from local streets cannot escape and accumulate quickly around the station.</li></p></div>
+<p></p>
+  <h2>Polar Map</h2>ç
+  <p></p>
+       <img class="img-fluid rounded shadow-sm my-3" src="polarMap.png">
+  <p></p>
+  <p><li>This map takes the polar plot and overlays it directly onto the real map of El Prat de Llobregat, centering it right on the Sagnier measuring station. 
+    It shows exactly which roads and infrastructures are causing the pollution.</li></p>
+  <p><li>This colored overlay sits directly over the C-31 / Autovia de Castelldefels and the Damm brewery.</li></p>
+  <p><li>It proves that when the wind blows from these directions, it carries the heavy emissions from highway traffic and industrial boilers straight to the monitoring station.</li></p>
+</div>
+  
 <button id="backToTop" class="btn btn-primary" 
 style="position: fixed; bottom: 25px; right: 25px; display:none; border-radius: 50%;">
   <i class="fa-solid fa-arrow-up"></i>
