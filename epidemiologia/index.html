@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -305,7 +306,7 @@ body[data-bs-theme="dark"] .navbar-toggler-icon {
             <div>
                 <h1>🌫️ Com afecta la contaminació aèria a les incidències d'infeccions respiratòries diàries?</h1>
                 <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px;">
-                    <span class="badge">📍 El Prat (Sagnier) · 2012 – 2025</span>
+                    <span class="badge">📍 El Prat (Sagnier) · 2011 – 2025</span>
                     <span class="badge">📊 5191 dies analitzats</span>
                     <span class="badge">🧪 Epidemiologia ambiental</span>
                 </div>
@@ -337,7 +338,7 @@ body[data-bs-theme="dark"] .navbar-toggler-icon {
             <span><strong>CO</strong> 0.4 µg/m³ <span class="exceed">0 > 4000</span></span>
         </div>
         <p class="footnote" style="margin-top: 0;">* Dies amb registre: NO₂ 4918, NO 4962, CO 5118, C₆H₆ 4123, SO₂ 5164, O₃ 5023.</p>
-       
+        
         <div style="background: #faf7e6; padding: 16px 22px; border-radius: 24px; margin: 24px 0 8px;">
             <strong>📌 Preguntes del problema (a resoldre):</strong>
             <ol style="margin-top: 12px; padding-left: 28px;">
@@ -353,13 +354,14 @@ body[data-bs-theme="dark"] .navbar-toggler-icon {
     <div class="card">
         <h2>🧮 Resolució guiada · pas a pas</h2>
 
+
         <!-- PAS 1 -->
         <div class="step">
             <div class="step-header"><span class="step-num">1</span><span style="font-size: 1.4rem; font-weight: 600;">Correlació NO₂ – incidència (lag 0)</span></div>
             <p>Utilitzem el coeficient de correlació de Pearson per quantificar l'associació lineal. Amb les dades processades obtenim:</p>
             <div class="formula-block">
                 \[
-                r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}
+                r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}} 
                 \]
                 \[
                 r_{\text{NO}_2,\text{incid}}(0) = 0.368 \quad (p < 0.0001,\; \text{significatiu ***})
@@ -378,17 +380,19 @@ body[data-bs-theme="dark"] .navbar-toggler-icon {
             </ul>
             <div class="formula-block">
                 \[
-                RR = \frac{I_{\text{exposats}}}{I_{\text{no exposats}}} = \frac{1.98}{1.85} \approx 1.92
+                RR = \frac{I_{\text{exposats}}}{I_{\text{no exposats}}} = \frac{1.98}{1.85} \approx 1.07
                 \]
                 \[
-                AR = I_{\text{exposats}} - I_{\text{no exposats}} = 1.98 - 1.85 = 0.22 \text{ casos/1000}
+                AR = I_{\text{exposats}} - I_{\text{no exposats}} = 1.98 - 1.85 = 0.13 \text{ casos/1000}
                 \]
                 \[
-                AR\% = \frac{AR}{I_{\text{exposats}}} \times 100 = \frac{0.22}{1.98} \times 100 \approx 13.75\%
+                AR\% = \frac{AR}{I_{\text{exposats}}} \times 100 = \frac{0.13}{1.98} \times 100 \approx 6.5\%
                 \]
             </div>
             <p>Interval de confiança del 95% per al RR: \([1.06,\,1.08]\), \(p<0.001\).</p>
-            <p><strong>Conclusió:</strong> RR > 1 indica un efecte nociu. El 13.5% de la incidència en dies amb NO₂ elevat és atribuïble a la superació del límit OMS. Això equival a un excés de 0.22 casos per cada 1000 habitants i dia.</p>
+            <p><strong>Conclusió:</strong> <p>RR > 1 indica un efecte nociu. L'efecte perjudicial del NO<sub>2</sub> fa que hi hagi un 7% més de casos d'infeccions respiratories perquè el risc relatiu es del 1,07. <p>
+                
+            </p> <p> El 6% de la incidència en dies amb NO₂ elevat és atribuïble a la superació del límit OMS perquè el risc atribuit en percentatge, AR% és 6,5. Això equival a un excés de 0.13 casos per cada 1000 habitants i dia. Com el prat de llobregat són 66000 habitants hi haurán 0.13 x 66= 9 casos d'infeccions respiratories en El Prat causats per la contaminació</p>
         </div>
 
         <!-- PAS 3 -->
@@ -433,7 +437,7 @@ body[data-bs-theme="dark"] .navbar-toggler-icon {
 
         <!-- PAS 5 -->
         <div class="step">
-            <div class="step-header"><span class="step-num">5</span><span style="font-size: 1.4rem; font-weight: 600;">Tendències temporals (2012-2025)</span></div>
+            <div class="step-header"><span class="step-num">5</span><span style="font-size: 1.4rem; font-weight: 600;">Tendències temporals (2011-2025)</span></div>
             <p>L'anàlisi de tendència mostra una lleugera reducció de la incidència mitjana a partir de 2020, possiblement per millores en la qualitat de l'aire i canvis en mobilitat. No obstant això, els hiverns continuen presentant pics associats a NO₂ elevat.</p>
             <div style="display: flex; gap: 20px; justify-content: space-around; background: #e2eee7; border-radius: 24px; padding: 16px;">
                 <div><strong>2012-2019</strong><br>Incid. mitjana ≈ 1.58</div>
@@ -449,8 +453,8 @@ body[data-bs-theme="dark"] .navbar-toggler-icon {
         <h2>📝 Resum i conclusions del problema</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div>
-                <p>✔️ <strong>Associació significativa:</strong> \(r = 0.368\) (NO₂) i RR = 1.16.<br>
-                ✔️ <strong>Fracció atribuïble:</strong> 13.5% de la incidència en dies contaminants.<br>
+                <p>✔️ <strong>Associació significativa:</strong> \(r = 0.368\) (NO₂) i RR = 1.92.<br>
+                ✔️ <strong>Fracció atribuïble:</strong> 6.5% de la incidència en dies contaminants.<br>
                 ✔️ <strong>Efecte agut:</strong> màxima correlació a lag 0-1.<br>
                 ✔️ <strong>Pics d'alerta:</strong> gener 2022, amb incidències >5 per 1000.</p>
             </div>
@@ -460,12 +464,12 @@ body[data-bs-theme="dark"] .navbar-toggler-icon {
         </div>
         <hr style="margin: 24px 0 12px; border-top: 2px solid #bdd6ca;">
         <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
-            <span style="background: #1b4e3f; color: white; padding: 6px 24px; border-radius: 60px;">📍 Dades reals processades · Martorell</span>
-            <span class="badge">🌫️ NO₂ · PM · O₃ · SO₂ · 5108 dies</span>
+            <span style="background: #1b4e3f; color: white; padding: 6px 24px; border-radius: 60px;">📍 Dades reals processades · El Prat (Sagnier)</span>
+            <span class="badge">🌫️ NO₂ · PM · O₃ · SO₂ · 5191 dies</span>
             <span style="margin-left: auto; font-style: italic;">Anàlisi estil OMS · Educatiu</span>
         </div>
         <p class="footnote" style="margin-top: 18px;">
-            * Els càlculs es basen en el conjunt de dades obtingudes de servidors de la Generalitat de Catalunya de Martorell i municipis propers. Totes les fórmules s'han verificat amb les mitjanes i recomptes indicats.
+            * Els càlculs es basen en el conjunt de dades obtingudes de servidors de la Generalitat de Catalunya de El Prat (Sagnier) i municipis propers. Totes les fórmules s'han verificat amb les mitjanes i recomptes indicats.
         </p>
     </div>
 <div class="card">
