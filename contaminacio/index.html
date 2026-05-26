@@ -374,20 +374,57 @@ The impact of these diseases is not the same for everyone. Respiratory illnesses
 <p></p>
 
   <div align="center" data-aos="fade-up">
+
+  <h2>DLNM (Distributed Lag Non-linear Model) </h2>
+      <p></p>
+<p>This mathematical model was created by Gasparrini et al. (2010).
+Pollutants have a lag time with respect to health; that is, there is not always an immediate effect. In
+many cases, they can cause an effect later on.<p>
+<p>These models are non-linear because, if they were linear, it would mean that an increase in pollution
+causes a proportional increase in respiratory cases. Although this might seem logical, it is not
+exactly how it works. An increase of 5μg/m<sup>3</sup> of NO<sub>2</sub> does not have the same impact if it
+increases from 5 to 10 as it does if it increases from 40 to 45. In other words, it is a curve rather
+than a straight line.</p>
+<p>The delays are called LAG and can be equal to 0 (no delay) or any number between 0 and 14. If the
+LAG is equal to 14, it means that two weeks pass between the peak of the pollutant and the peak of
+the health problems.</p>
+    <p></p>
+    <h3>Reference</h3>
+    <p>
+Gasparrini, A. ; Armstrong, B. ; Kenward, M.G. (2010). Distributed lag non-linear models. Stat. Med. 29 (21):2224-34.
+DOI: https://doi.org/10.1002/sim.3940</p>
+  <p></p>
+     <img class="img-fluid rounded shadow-sm my-3" src="dlnm.png">
+     <p></p>
+<p>This graph shows a 3D Response Surface generated using an advanced statistical model called DLNM (Distributed Lag Non-linear Models). Its objective is to show how NO<sub>2</sub>pollution levels relate to the risk of suffering respiratory diseases over time.
+The graph is read by analyzing three axes simultaneously:</p>
+    <li>NO<sub>2</sub> Axis (Bottom left): Shows the concentration of the pollutant. Values range from low levels (near 20) to high levels (above ).</li>
+    <li>Lag Axis (Bottom right): Represents the "lag" or the number of days that pass from when a person breathes the polluted air until the illness manifests (from 0 to 14 days).</li>
+    <li>Relative Risk Axis (Vertical): Indicates by how much the probability of getting sick is multiplied. The reference value is 1.00 (normal risk). Anything above 1.00 signifies an increased risk, and anything below 1.00 indicates a risk lower than average.</li>
+<p></p>
+<h3>What is observed in the shape of the black surface?</h3>
+    <li>Delayed and Cumulative Effect: Contrary to what it might seem, the risk is not immediate. At Lag 0 (front right) the risk is low, but as NO<sub>2</sub> rises toward 60 and we move toward higher lag days (Lag between 5 and 14 days, in the background), the surface rises significantly, exceeding 1.05.</li>
+    <li>Upward Slope: This upward tilt statistically demonstrates that severe pollution acts in the medium term; the health impact on citizens escalates, and the true peak of hospital admissions appears days after the exposure.</li>
+
+  <p></p>
+  <div align="center" data-aos="fade-up">
   <h2>Conclusion</h2>
-<li>Overall, the graphics show that nitrogen dioxide (NO<sub>2</sub>) levels in El Prat (Sagnier) change depending on the time of day, month, and year, with higher concentrations usually appearing during peak activity hours, likely related to traffic and urban activity.
+<p>Overall, the graphics show that nitrogen dioxide (NO<sub>2</sub>) levels in El Prat (Sagnier) change depending on the time of day, month, and year, with higher concentrations usually appearing during peak activity hours, likely related to traffic and urban activity.
 
 In 2025, most days present low or moderate pollution levels, meaning that air quality is generally acceptable, although some days show higher concentrations.
 
 In addition, we analyzed health data from the SIVIC system and compared it with the pollution levels. This comparison suggests that air pollution may be related to certain respiratory diseases, since higher pollution periods can coincide with increases in health incidents.
 
-That's why, the study indicates that air quality can have an impact on public health, highlighting the importance of monitoring pollution levels and reducing emissions to protect people’s health.</li>
+That's why, the study indicates that air quality can have an impact on public health, highlighting the importance of monitoring pollution levels and reducing emissions to protect people’s health.
 To understand this impact, our Pollution Rose, Polar Plot, and Polar Map reveal that the highest 
   NO<sub>2</sub> concentrations are coming from the West and Southwest, aligning directly with 
   the C-31 / Autovia de Castelldefels and extending toward the Barcelona-El Prat Airport. 
   Furthermore, a significant localized source is identified to the North/Northwest, right over the Damm brewery, where industrial boilers, 
   cogeneration plants, and heavy distribution truck traffic feed directly into the urban wind path. According to weather data from Meteocat, while eastern sea breezes keep the city clean, winter inversions and calm, windless conditions trap all these highway, industrial, and urban emissions right at ground level, creating the high-pollution seen at the center of the 
-  Polar Plot where wind speed is nearly zero. <p></p></div>
+  Polar Plot where wind speed is nearly zero.
+  This trapped pollution is a direct trigger for the respiratory medical cases recorded by SIVIC, which show that from 2020 onwards, the majority of cases are linked to COVID-19 and winter flues; although these are viral infections, poor air quality inflames the lungs and weakens the body's natural defenses. This biological vulnerability is rigorously confirmed by our DLNM (Distributed Lag Non-linear Model) 3D surface, which proves that the health impact of high NO2 concentrations (above  ) is not just immediate, but cumulative, showing a significant delayed effect where the relative risk of respiratory admissions escalates and peaks between 5 and 14 days after exposure. Finally, the health data shows no noticeable difference between men and women because air is a shared resource, but it highlights a high vulnerability among specific age groups, showing that children and the elderly are the primary victims when these environmental, industrial, and delayed biological factors align. 
+</p> <p></p></div>
+  
 
   <button id="backToTop" class="btn btn-primary" 
 style="position: fixed; bottom: 25px; right: 25px; display:none; border-radius: 50%;">
