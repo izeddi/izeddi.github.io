@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -7,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -372,6 +374,92 @@ The impact of these diseases is not the same for everyone. Respiratory illnesses
   <p><li>It proves that when the wind blows from these directions, it carries the heavy emissions from highway traffic and industrial boilers straight to the monitoring station.</li></p>
 </div>
 <p></p>
+
+ <div align="center" data-aos="fade-up">
+     <h2>1. RR = Relative Risk </h2>
+    <p>General formula:</p>
+     <p>$$RR = \frac{I_e}{I_0} = \frac{\text{Incidence Exposed}}{\text{Incidence Unexposed}}$$</p>
+   <p>
+Days are divided based on whether NO<sub>2</sub> exceeds the WHO daily guideline value: (25μg/m<sup>3</sup>)</p>
+
+<p>High Exposure (NO<sub>2</sub> > 25μg/m<sup>3</sup>)
+Average Incidence = 1,98 cases / 1000 (3484 days)</p>
+
+<p>Low Exposure (NO<sub>2</sub> ≤ 25μg/m<sup>3</sup>) Average Incidence = 1,85 cases / 1000 (1734 days)</p>
+<p>$$RR = \frac{1,98}{1,85} \approx 1,07$$</p>
+<p>RR > 1 = 1,07 indicates a harmful effect.</p>
+     <p></p>
+    
+    <h2>2. AR = Attributable Risk</h2>
+    <p>General formula:</p>
+     <p>$$AR = I_e - I_0$$</p>
+     <p>$$AR = 1,98 - 1,85 = 0,13$$</p>
+   <p><li>Excess NO2 generates 0.13 extra cases of respiratory infections per 1,000 inhabitants.</li>
+<li>This equates to 13 extra cases of respiratory infections per 100,000 inhabitants.</li>
+<li>Context: El Prat de Llobregat has a population of 66,000.</li>
+<p>$$\frac{0,13 \text{ casos}}{1.000 \text{ hab.}} \cdot 66 = 9 \text{ cases in El Prat de Llobregat}$$</p>
+     <p></p>
+  
+  <h2>3. AR% = Attributable Risk Percentage </h2>
+    <p>General formula:</p>
+     <p>$$AR\% = \frac{RR - 1}{RR} \cdot 100$$</p>
+   <p>$$AR\% = \frac{1,07 - 1}{1,07} \cdot 100 = 6,54\%$$</p>
+   <li>6,54% of respiratory infection cases are caused by excess NO<sub>2</sub></li>
+   <p></p>
+
+   <p>NO<sub>2</sub> Exceedances:</p>
+<p>
+
+<li>Number of days with exceedances = 3,484 days </li>
+<li>Total number of analyzed days = 5,191 days</li>
+<p>$$\frac{3.184}{5.191} = 0,613 \rightarrow 61,3\%$$</p> 
+<p>On 61.3 % of the days, the maximum recommended levels of 25μg/m<sup>3</sup>
+by the World Health
+
+Organization are exceeded. We have calculated with R the daily limit of 40 μg/m<sup>3</sup> 
+(EU legal
+limit) and it has given us $$\frac{5}{24} = 0,21 $$ 0,21 days in 15 years (2011-2025) The EU legal limit is
+
+exceeded. European law says that it can be exceeded 18 times every year.</p>
+<p></p>
+<h2>Poisson Model</h2>
+
+<p>$$P(X = k) = \frac{\lambda^k \cdot e^{-\lambda}}{k!}$$</p>
+
+<p>Definition of variables:</p>
+<li>k = no of observed cases</li>
+ <li>λ = Average Incidences</li>
+<li>λ 0= 1,85 (low)</li>
+<li>λ 1= 1,98 (high)</li>
+<p></p>
+<p>$$P(X = 2) = \frac{1,85^2 \cdot e^{-1,85}}{2!} = 0,269 \rightarrow 26,9\%$$ probability of 2 cases if pollution ↓</p>
+<p>$$P(X = 2) = \frac{1,98^2 \cdot e^{-1,98}}{2!} = 0,271 \rightarrow 27,1\%$$ probability of 2 cases if pollution ↑ </p>
+
+<p>If NO<sub>2</sub> pollution is low, there is a 26.9 % probability of having 2 cases per 1000 inhabitants.</p>
+<p>If NO<sub>2</sub> pollution is high, there is a 27.1 % probability of having 2 cases per 1000
+inhabitants.</p>
+<p>P = Probability of 2 cases of respiratory infections per 1000 inhabitants based on a mathematical
+Poisson model that has taken into account the daily data of 15 years (2011-2025) of infections and
+air pollutants (NO<sub>2</sub> , O<sub>3</sub> , etc.) at the 3 primary care centers in El Prat de Llobregat. We know that
+the data has been obtained from the XPVCA database (Air Pollution Prevention and Monitoring
+Network) and SIVIC (Information System for Surveillance in Catalonia).</p>
+     <p>Therefore, the probability of 2 respiratory infections per every 1,000 inhabitants of El Prat is 26.9%
+if NO2 levels are low, meaning below the WHO limit of (25μg/m
+3
+) on the other hand, if the NO<sub>2</sub>
+
+pollution level is high, above the WHO, we will have a 27.1% probability.</p>
+<p>High exposure: 3184 days</p>
+<p>$$\frac{3.184}{5.191} = 0,613 \rightarrow 61,3\%$$</p>
+<p>Low exposure: 1734 days</p>
+<p>$$\frac{1.734}{5.191} = 0,334 \rightarrow 33,4\%$$</p>
+<p>% of days with low and high exposure.</p>
+<p></p>
+<h2>Total Probability / Bayes' Theorem</h2>
+<p>$$P(X = 2) = (0,613 \cdot 0,271) + (0,334 \cdot 0,269) = 0,256 \rightarrow 25,6\%$$</p>
+<p>The director tells us that an incidence of 1% is worrying.</p>
+
+     <p></p>
 
   <div align="center" data-aos="fade-up">
 
