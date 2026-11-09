@@ -137,12 +137,41 @@
       en un editor més avançat amb CodeMirror.
     -->
 
-    <textarea id="code">#include <stdio.h>
-
+    <textarea id="code">
 int main(void) {
-    printf("Hola, món!\n");
-    printf("El programa C s'ha executat correctament!\n");
-    return 0;
+  #include <stdio.h>
+#include <windows.h>
+
+int main() {
+ SetConsoleOutputCP(CP_UTF8);
+ SetConsoleCP(CP_UTF8);
+
+ double m = 1400;
+ double g = 9.81;
+ double y = 12;
+
+ double treballj, treballkpm, força;
+
+ printf("\n");
+ printf("Exercici 4.2\n\n");
+
+ printf("Calcula el treball necessari en J i Kp*m per elevar un ascensor 1400 kg a 12 m.\n");
+
+ /*Calcula la Força*/
+ força = m * g;
+
+ /*Calcula el treball necessari en J*/
+ treballj = força * y;
+
+ /*Calcula el treball necessari en Kpm*/
+ treballkpm = treballj * 1 /9.81;
+
+ printf("Força: %2.lf N\n", força);
+ printf("Treball en Juls: %2.f J\n", treballj);
+ printf("Treball en Kpm: %2.lf Kpm\n",treballkpm);
+
+ return 0;
+
 }</textarea>
 
   </div>
