@@ -1,31 +1,300 @@
 
 <!DOCTYPE html>
-<!--
-  Aquesta primera línia indica al navegador que estem
-  utilitzant HTML5, que és el llenguatge per crear
-  pàgines web.
--->
-
 <html lang="ca">
-<!-- Indiquem que el contingut de la pàgina és en català. -->
-
 <head>
-  <!-- Aquí posem informació sobre la pàgina web. -->
-
   <meta charset="UTF-8">
-  <!-- Permet mostrar correctament accents, apòstrofs i símbols. -->
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Fa que la pàgina s'adapti a la mida de mòbils,
-       tauletes i ordinadors. -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exercici PAU amb Funció</title>
-  <!-- És el títol que apareix a la pestanya del navegador. -->
 
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7f7f7;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body[data-bs-theme="dark"] {
+      background: #1f1f1f;
+      color: white;
+    }
+
+    /* NAVBAR */
+    #mainNavbar {
+      background-color: #ffffff;
+      z-index: 1030;
+      border-radius: 16px;
+      margin: 10px;
+      padding: 8px 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    body[data-bs-theme="dark"] #mainNavbar {
+      background-color: #2c2c2c;
+    }
+
+    #mainNavbar .navbar-brand,
+    #mainNavbar .nav-link,
+    #themeToggle {
+      color: #000;
+    }
+
+    body[data-bs-theme="dark"] #mainNavbar .navbar-brand,
+    body[data-bs-theme="dark"] #mainNavbar .nav-link,
+    body[data-bs-theme="dark"] #themeToggle {
+      color: #fff;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    body[data-bs-theme="dark"] .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 576px) {
+      .logo {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    /* DESPLEGABLES */
+    body[data-bs-theme="dark"] .dropdown-menu {
+      background: #2c2c2c;
+      border-color: #444;
+    }
+
+    body[data-bs-theme="dark"] .dropdown-item {
+      color: white;
+    }
+
+    body[data-bs-theme="dark"] .dropdown-item:hover {
+      background: #444;
+    }
+
+    /* CONTENIDO */
+    .content-box {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+
+    body[data-bs-theme="dark"] .content-box {
+      background: #2c2c2c;
+      box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      font-weight: 700;
+    }
+
+    p {
+      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    /* ONECOMPILER */
+    .compiler-container {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .compiler-container iframe {
+      width: 100%;
+      height: 650px;
+      border: none;
+      display: block;
+    }
+
+    body[data-bs-theme="dark"] .compiler-container {
+      box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+    }
+
+    @media (max-width: 768px) {
+      .content-box {
+        padding: 15px;
+      }
+
+      .compiler-container iframe {
+        height: 600px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
-  <body>
-  <h1>Exercici PAU amb Funció</h1>
-<p>A continuació veuras un exercici PAU de C per practicar l'entrada de dades de l'usuari amb funció, realitzat amb onecompiler.</p>
-    <iframe src="https://onecompiler.com/c/458y3f83z" width="1200" height="600" title="Exemple de PAU amb funcio "></iframe>
+
+<body data-bs-theme="light">
+
+<!-- NAVBAR COMPLETA -->
+<nav id="mainNavbar" class="navbar navbar-expand-lg shadow">
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <a class="navbar-brand d-flex align-items-center" href="https://izeddi.github.io">
+      <img src="https://izeddi.github.io/logo.png" alt="Logo" class="logo rounded-circle me-2">
+      <span class="fw-bold">Web de Ilyas</span>
+    </a>
+
+    <!-- BOTÓN MÓVIL -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- RECERCA IA -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-diagram-project me-1"></i> Cerca IA vs Google Academic
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="https://izeddi.github.io/cerca">
+                <i class="fa-solid fa-seedling me-1"></i> Recerca Tomàquet
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- PROGRAMACIÓ C -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-c me-1"></i> Programació en C
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://izeddi.github.io/printf"><i class="fa-solid fa-folder-open me-1"></i> Exercici amb Printf</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/scanf"><i class="fa-solid fa-folder-open me-1"></i> Exercici amb Scanf</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/condicionals"><i class="fa-solid fa-folder-open me-1"></i> Exercici amb Condicionals</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/funcio"><i class="fa-solid fa-folder-open me-1"></i> Exercici amb Funció</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pau"><i class="fa-solid fa-folder-open me-1"></i> Exercici PAU</a></li>
+          </ul>
+        </li>
+
+        <!-- CONTAMINACIÓ -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-folder-open me-1"></i> Contaminació i Salut al Baix Llobregat
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://izeddi.github.io/contaminacio"><i class="fa-solid fa-head-side-mask me-1"></i> Contaminació i Salut Respiratòria a El Prat (Sagnier)</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/epi"><i class="fa-solid fa-head-side-mask me-1"></i> Environmental Epidemiological Analysis</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/dlnm"><i class="fa-solid fa-smog me-1"></i> Distributed Lag Non-linear Models</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/epidemiologia"><i class="fa-solid fa-industry me-1"></i> Resultats de El Prat (Sagnier)</a></li>
+          </ul>
+        </li>
+
+        <!-- PING PONG -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-table-tennis-paddle-ball me-1"></i> Ping Pong
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv1"><i class="fa-solid fa-baseball me-1"></i> Pong-V1</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv2"><i class="fa-solid fa-baseball me-1"></i> Pong-V2</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv3"><i class="fa-solid fa-baseball me-1"></i> Pong-V3</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv4"><i class="fa-solid fa-baseball me-1"></i> Pong-V4</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv5"><i class="fa-solid fa-baseball me-1"></i> Pong-V5</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv6"><i class="fa-solid fa-baseball me-1"></i> Pong-V6</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <!-- MODO OSCURO -->
+      <button id="themeToggle" class="btn ms-2" type="button">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+
+    </div>
+  </div>
+</nav>
+
+<!-- CONTENIDO -->
+<main class="container">
+
+  <div class="content-box">
+
+    <h1>
+      <i class="fa-solid fa-code me-2"></i>
+      Exercici PAU amb Funció
+    </h1>
+
+    <p>
+      A continuació veuràs un exercici PAU de C per practicar
+      l'entrada de dades de l'usuari amb funció,
+      realitzat amb OneCompiler.
+    </p>
+
+    <div class="compiler-container">
+      <iframe
+        src="https://onecompiler.com/c/458y3f83z"
+        title="Exercici PAU de C amb funció a OneCompiler"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- BOOTSTRAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- CANVI DE TEMA -->
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-bs-theme');
+
+    if (currentTheme === 'light') {
+      body.setAttribute('data-bs-theme', 'dark');
+      themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    } else {
+      body.setAttribute('data-bs-theme', 'light');
+      themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
+  });
+</script>
+
 </body>
 </html>
