@@ -1,143 +1,421 @@
 
 <!DOCTYPE html>
-<!--
-  Aquesta primera línia indica al navegador que estem
-  utilitzant HTML5, que és el llenguatge per crear
-  pàgines web.
--->
-
 <html lang="ca">
-<!-- Indiquem que el contingut de la pàgina és en català. -->
-
 <head>
-  <!-- Aquí posem informació sobre la pàgina web. -->
-
   <meta charset="UTF-8">
-  <!-- Permet mostrar correctament accents, apòstrofs i símbols. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercici amb Printf</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Fa que la pàgina s'adapti a la mida de mòbils,
-       tauletes i ordinadors. -->
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <title>Exercici amb printf</title>
-  <!-- És el títol que apareix a la pestanya del navegador. -->
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
-  <!--
-    Carreguem un fitxer especial que ajuda a aïllar
-    la pàgina web per poder executar WebAssembly.
-    És necessari per al funcionament de determinades
-    funcions del navegador.
-  -->
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+
+  <!-- Service Worker -->
   <script src="./coi-serviceworker.js"></script>
 
-  <!--
-    Carreguem els estils de CodeMirror.
-    CodeMirror és una eina que transforma una caixa
-    de text normal en un editor de codi més còmode.
-  -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
-
-  <!-- Carreguem el tema de colors Dracula per a l'editor. -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
-
   <style>
-    /*
-      CSS és el llenguatge que controla l'aspecte visual
-      de la pàgina: colors, mides, espais i distribució.
-    */
-
     * {
       box-sizing: border-box;
     }
-    /* Fa que les mides dels elements siguin més fàcils de controlar. */
 
     body {
-      margin: 0;                  /* Elimina els marges exteriors. */
-      padding: 20px;              /* Deixa espai al voltant del contingut. */
-      background: #171923;        /* Posa el fons de color fosc. */
-      color: #eee;                /* Posa el text de color clar. */
-      font-family: Arial, sans-serif; /* Escull el tipus de lletra. */
+      font-family: 'Poppins', sans-serif;
+      background: #f7f7f7;
+      transition: background 0.3s ease, color 0.3s ease;
+      color: #212529;
     }
 
-    h1 {
-      margin-top: 0;
+    body[data-bs-theme="dark"] {
+      background: #1f1f1f;
+      color: white;
     }
-    /* Elimina l'espai superior del títol principal. */
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    #mainNavbar {
+      background-color: #ffffff;
+      z-index: 1030;
+      border-radius: 16px;
+      margin: 10px;
+      padding: 8px 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    body[data-bs-theme="dark"] #mainNavbar {
+      background-color: #2c2c2c;
+    }
+
+    #mainNavbar .navbar-brand,
+    #mainNavbar .nav-link,
+    #themeToggle {
+      color: #000;
+    }
+
+    body[data-bs-theme="dark"] #mainNavbar .navbar-brand,
+    body[data-bs-theme="dark"] #mainNavbar .nav-link,
+    body[data-bs-theme="dark"] #themeToggle {
+      color: #fff;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 576px) {
+      .logo {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    body[data-bs-theme="dark"] .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* Desplegables */
+
+    body[data-bs-theme="dark"] .dropdown-menu {
+      background: #2c2c2c;
+      border-color: #444;
+    }
+
+    body[data-bs-theme="dark"] .dropdown-item {
+      color: white;
+    }
+
+    body[data-bs-theme="dark"] .dropdown-item:hover {
+      background: #444;
+    }
+
+    /* =========================
+       CONTENEDOR PRINCIPAL
+    ========================= */
+
+    .content-box {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+
+    body[data-bs-theme="dark"] .content-box {
+      background: #2c2c2c;
+      box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+    }
+
+    h1, h3 {
+      text-align: center;
+      margin: 20px 0;
+      font-weight: 700;
+    }
+
+    /* =========================
+       EDITOR CODEMIRROR
+    ========================= */
+
+    .editor-container {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
 
     .CodeMirror {
-      height: 380px;              /* Alçada de la zona per escriure codi. */
-      font-size: 15px;            /* Mida de les lletres. */
-      border-radius: 8px;         /* Arrodoneix les cantonades. */
+      height: 420px;
+      width: 100%;
+      font-size: 14px;
+      border-radius: 12px;
+      font-family: monospace;
     }
+
+    /* =========================
+       BOTONES
+    ========================= */
 
     .buttons {
-      display: flex;              /* Col·loca els botons en una fila. */
-      flex-wrap: wrap;            /* Permet que baixin de fila si cal. */
-      gap: 10px;                  /* Deixa espai entre els botons. */
-      margin: 16px 0;             /* Deixa espai a sobre i a sota. */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 22px 0;
     }
 
-    button {
-      padding: 11px 17px;         /* Espai interior del botó. */
-      border: 0;                  /* Elimina la vora. */
-      border-radius: 6px;         /* Arrodoneix les cantonades. */
-      background: #5865f2;        /* Color blau del botó. */
-      color: white;               /* Text blanc. */
-      font-size: 14px;             /* Mida de la lletra. */
-      cursor: pointer;             /* Mostra una mà quan hi passem. */
+    .buttons button {
+      padding: 11px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #5865f2;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.2s ease;
     }
 
-    button:disabled {
-      opacity: .5;                /* Fa el botó més transparent. */
-      cursor: wait;               /* Mostra que hem d'esperar. */
+    .buttons button:hover {
+      background: #424ecb;
+      transform: translateY(-2px);
     }
-    /* Aquest estil s'aplica quan un botó està desactivat. */
+
+    .buttons button:disabled {
+      opacity: 0.5;
+      cursor: wait;
+      transform: none;
+    }
+
+    #copy {
+      background: #198754;
+    }
+
+    #copy:hover {
+      background: #146c43;
+    }
+
+    #downloadC {
+      background: #0d6efd;
+    }
+
+    #downloadC:hover {
+      background: #0b5ed7;
+    }
+
+    /* =========================
+       ESTADO
+    ========================= */
 
     #status {
-      padding: 10px;
+      padding: 15px;
+      background: #e9ecef;
+      border-radius: 12px;
+      color: #333;
+      font-size: 13px;
+      text-align: center;
+      overflow-wrap: anywhere;
+      margin-top: 20px;
+    }
+
+    body[data-bs-theme="dark"] #status {
       background: #252a3a;
-      border-radius: 6px;
       color: #f0c674;
     }
-    /* És la zona on s'expliquen els passos i els avisos. */
+
+    /* =========================
+       CONSOLA
+    ========================= */
 
     #output {
-      min-height: 150px;          /* Alçada mínima de la consola. */
-      padding: 15px;
+      min-height: 180px;
+      padding: 18px;
       background: #0d1117;
       border: 1px solid #444;
-      border-radius: 8px;
-      white-space: pre-wrap;      /* Respecta els salts de línia. */
-      overflow-wrap: anywhere;    /* Evita que el text surti de la caixa. */
-      font-family: monospace;     /* Lletra típica de programació. */
+      border-radius: 12px;
+      color: #e6edf3;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: auto;
     }
-    /* Aquesta caixa mostrarà el resultat del programa C. */
+
+    /* =========================
+       DESCARGAS
+    ========================= */
+
+    #downloads {
+      margin-top: 15px;
+      text-align: center;
+    }
 
     .download {
       display: inline-block;
       margin-top: 12px;
+      color: #0d6efd;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .download:hover {
+      text-decoration: underline;
+    }
+
+    body[data-bs-theme="dark"] .download {
       color: #8ab4f8;
     }
-    /* Dona aspecte d'enllaç als fitxers descarregables. */
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 768px) {
+      .content-box {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .CodeMirror {
+        height: 380px;
+        font-size: 12px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .buttons button {
+        width: 100%;
+      }
+
+      #output {
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
 
-<body>
-<!-- Aquí comença tot allò que veurà l'usuari a la pantalla. -->
+<body data-bs-theme="light">
 
-  <h1>Exercici amb printf</h1>
-  <!-- Títol principal de la pàgina. -->
+<!-- =========================
+     NAVBAR COMPLETA
+========================= -->
 
-  <div>
-    <!--
-      Aquesta zona conté l'editor on escriurem el programa C.
-      El textarea és una caixa de text que després convertirem
-      en un editor més avançat amb CodeMirror.
-    -->
+<nav id="mainNavbar" class="navbar navbar-expand-lg shadow">
+  <div class="container-fluid">
 
-    <textarea id="code">
+    <a class="navbar-brand d-flex align-items-center" href="https://izeddi.github.io">
+      <img src="https://izeddi.github.io/logo.png" alt="Logo" class="logo rounded-circle me-2">
+      <span class="fw-bold">Web de Ilyas</span>
+    </a>
+
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- RECERCA IA -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-diagram-project me-1"></i> Cerca IA vs Google Academic
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="https://izeddi.github.io/cerca">
+                <i class="fa-solid fa-seedling me-1"></i> Recerca Tomàquet
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- PROGRAMACIÓ C -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-c me-1"></i> Programació en C
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://izeddi.github.io/printf"><i class="fa-solid fa-folder-open me-1"></i> Exercici amb Printf</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/scanf"><i class="fa-solid fa-folder-open me-1"></i> Exercici amb Scanf</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/condicionals"><i class="fa-solid fa-folder-open me-1"></i> Exercici amb Condicionals</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/funcio"><i class="fa-solid fa-folder-open me-1"></i> Exercici amb Funció</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pau"><i class="fa-solid fa-folder-open me-1"></i> Exercici PAU</a></li>
+          </ul>
+        </li>
+
+        <!-- CONTAMINACIÓ -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-folder-open me-1"></i> Contaminació i Salut al Baix Llobregat
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://izeddi.github.io/contaminacio"><i class="fa-solid fa-head-side-mask me-1"></i> Contaminació i Salut Respiratòria a El Prat (Sagnier)</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/epi"><i class="fa-solid fa-head-side-mask me-1"></i> Environmental Epidemiological Analysis</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/dlnm"><i class="fa-solid fa-smog me-1"></i> Distributed Lag Non-linear Models</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/epidemiologia"><i class="fa-solid fa-industry me-1"></i> Resultats de El Prat (Sagnier)</a></li>
+          </ul>
+        </li>
+
+        <!-- PING PONG -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-table-tennis-paddle-ball me-1"></i> Ping Pong
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv1"><i class="fa-solid fa-baseball me-1"></i> Pong-V1</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv2"><i class="fa-solid fa-baseball me-1"></i> Pong-V2</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv3"><i class="fa-solid fa-baseball me-1"></i> Pong-V3</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv4"><i class="fa-solid fa-baseball me-1"></i> Pong-V4</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv5"><i class="fa-solid fa-baseball me-1"></i> Pong-V5</a></li>
+            <li><a class="dropdown-item" href="https://izeddi.github.io/pongv6"><i class="fa-solid fa-baseball me-1"></i> Pong-V6</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <!-- MODO OSCURO -->
+      <button id="themeToggle" class="btn ms-2" type="button">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+
+    </div>
+  </div>
+</nav>
+
+
+<!-- =========================
+     CONTENIDO PRINCIPAL
+========================= -->
+
+<main class="container">
+
+  <div class="content-box">
+
+    <h1>
+      <i class="fa-solid fa-code me-2"></i>
+      Exercici amb printf
+    </h1>
+
+    <p class="text-center">
+      En aquest exercici podràs escriure, compilar i executar
+      un programa en llenguatge C directament des del navegador.
+    </p>
+
+    <!-- EDITOR -->
+    <div class="editor-container">
+      <textarea id="code">
 #include <stdio.h>
 
 int main() {
@@ -169,678 +447,361 @@ int main() {
  return 0;
 
 }</textarea>
+    </div>
+
+    <!-- BOTONES -->
+    <div class="buttons">
+
+      <button id="run">
+        <i class="fa-solid fa-play me-1"></i>
+        Compilar i executar
+      </button>
+
+      <button id="copy">
+        <i class="fa-solid fa-copy me-1"></i>
+        Copiar codi
+      </button>
+
+      <button id="downloadC">
+        <i class="fa-solid fa-download me-1"></i>
+        Descarregar .c
+      </button>
+
+    </div>
+
+    <!-- ESTADO -->
+    <p id="status">
+      Comprovant el navegador...
+    </p>
+
+    <!-- CONSOLA -->
+    <h3>
+      <i class="fa-solid fa-terminal me-2"></i>
+      Consola del programa
+    </h3>
+
+    <pre id="output">Esperant que executis el programa...</pre>
+
+    <!-- DESCARGAS -->
+    <div id="downloads"></div>
 
   </div>
 
-  <div class="buttons">
-    <!-- Agrupem els tres botons de la pàgina. -->
-
-    <button id="run">▶ Compilar i executar</button>
-    <!-- Inicia el procés de compilació i execució del programa. -->
-
-    <button id="copy">Copiar codi</button>
-    <!-- Copia el codi de l'editor al porta-retalls. -->
-
-    <button id="downloadC">Descarregar .c</button>
-    <!-- Permet guardar el programa com un fitxer C. -->
-  </div>
-
-  <p id="status">Comprovant el navegador...</p>
-  <!-- Aquí informem de què està fent la pàgina en cada moment. -->
-
-  <h3>Consola del programa</h3>
-
-  <pre id="output">Esperant que executis el programa...</pre>
-  <!--
-    Aquesta caixa funciona com una consola:
-    aquí apareixerà el text que escrigui el programa C
-    mitjançant les instruccions printf.
-  -->
-
-  <div id="downloads"></div>
-  <!-- Aquí apareixeran els enllaços per descarregar fitxers. -->
+</main>
 
 
-  <!--
-    Carreguem les dues parts de CodeMirror:
-    1. L'editor principal.
-    2. El suport per reconèixer la sintaxi del llenguatge C.
-  -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<!-- =========================
+     SCRIPTS
+========================= -->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
 
-  <script type="module">
-  /*
-    Aquí comença JavaScript.
-
-    JavaScript és el llenguatge que fa que la pàgina
-    sigui interactiva: permet prémer botons, llegir el codi,
-    executar accions i mostrar resultats.
-
-    type="module" permet importar eines externes.
-  */
-
-    /*
-      Importem tres eines de Wasmer:
-
-      init:
-        Prepara el sistema per executar WebAssembly.
-
-      Wasmer:
-        Permet carregar i executar programes WebAssembly.
-
-      Directory:
-        Permet crear una carpeta virtual dins del navegador.
-
-      Wasmer és l'eina que ens permet executar el compilador
-      i el programa sense instal·lar-los a l'ordinador.
-    */
-    import {
-      init,
-      Wasmer,
-      Directory
-    } from "https://unpkg.com/@wasmer/sdk@0.8.0/dist/index.mjs";
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
 
 
-    // ==========================================
-    // 1. PREPARAR L'EDITOR DE CODI
-    // ==========================================
+<!-- MODO CLARO Y OSCURO -->
 
-    /*
-      Convertim la caixa de text normal en un editor CodeMirror.
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
 
-      document.getElementById("code"):
-        Busca a la pàgina l'element que té id="code".
+  themeToggle.addEventListener('click', () => {
 
-      CodeMirror.fromTextArea:
-        Transforma aquella caixa de text en un editor
-        amb colors, números de línia i altres comoditats.
-    */
+    const currentTheme = body.getAttribute('data-bs-theme');
 
-    const editor = CodeMirror.fromTextArea(
-      document.getElementById("code"),
-      {
-        mode: "text/x-csrc",    // Indiquem que escriurem llenguatge C.
-        theme: "dracula",       // Tema de colors de l'editor.
-        lineNumbers: true,      // Mostra els números de línia.
-        indentUnit: 4,          // Cada tabulació equival a 4 espais.
-        tabSize: 4,             // Amplada de la tabulació.
-        lineWrapping: true      // Evita que les línies llargues surtin.
+    if (currentTheme === 'light') {
+      body.setAttribute('data-bs-theme', 'dark');
+      themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    } else {
+      body.setAttribute('data-bs-theme', 'light');
+      themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
+
+  });
+</script>
+
+
+<!-- =========================
+     WASMER Y CODEMIRROR
+     FUNCIONAMIENTO ORIGINAL
+========================= -->
+
+<script type="module">
+
+import {
+  init,
+  Wasmer,
+  Directory
+} from "https://unpkg.com/@wasmer/sdk@0.8.0/dist/index.mjs";
+
+
+// 1. PREPARAR EDITOR
+
+const editor = CodeMirror.fromTextArea(
+  document.getElementById("code"),
+  {
+    mode: "text/x-csrc",
+    theme: "dracula",
+    lineNumbers: true,
+    indentUnit: 4,
+    tabSize: 4,
+    lineWrapping: true
+  }
+);
+
+
+// 2. REFERENCIAS A LOS ELEMENTOS
+
+const status = document.getElementById("status");
+const output = document.getElementById("output");
+const downloads = document.getElementById("downloads");
+const runButton = document.getElementById("run");
+
+
+// 3. VARIABLES DE CONTROL
+
+let initialized = false;
+let clang = null;
+
+
+// 4. CAMBIAR MENSAJE DE ESTADO
+
+function setStatus(message) {
+  status.textContent = message;
+}
+
+
+// 5. COMPROBAR AISLAMIENTO
+
+function checkIsolation() {
+  return window.crossOriginIsolated &&
+    typeof SharedArrayBuffer !== "undefined";
+}
+
+
+// 6. DESCARGAR ARCHIVOS
+
+function downloadFile(data, filename, type) {
+
+  const blob = new Blob([data], { type });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = filename;
+  link.textContent = "Descarregar " + filename;
+  link.className = "download";
+
+  downloads.appendChild(link);
+  downloads.appendChild(document.createElement("br"));
+}
+
+
+// 7. INICIALIZAR WASMER
+
+async function initialize() {
+
+  if (initialized) return;
+
+  if (!checkIsolation()) {
+    throw new Error(
+      "El navegador no està aïllat.\n" +
+      "Comprova coi-serviceworker.js i recarrega la pàgina."
+    );
+  }
+
+  setStatus("Inicialitzant WebAssembly...");
+
+  await init();
+
+  setStatus("Descarregant Clang (primera vegada pot trigar)...");
+
+  clang = await Wasmer.fromRegistry("clang/clang");
+
+  initialized = true;
+
+  setStatus("Compilador C preparat.");
+}
+
+
+// 8. COMPILAR I EXECUTAR
+
+async function compileAndRun() {
+
+  runButton.disabled = true;
+
+  output.textContent = "";
+  downloads.innerHTML = "";
+
+  try {
+
+    // Preparar compilador
+    await initialize();
+
+    // Llegir codi
+    const source = editor.getValue();
+
+    // Crear carpeta virtual
+    setStatus("Preparant el fitxer C...");
+
+    const project = new Directory();
+
+    await project.writeFile("main.c", source);
+
+
+    // Compilar
+    setStatus("Compilant amb Clang...");
+
+    const compiler = await clang.entrypoint.run({
+      args: [
+        "/project/main.c",
+        "-o",
+        "/project/main.wasm"
+      ],
+      mount: {
+        "/project": project
       }
+    });
+
+    const compileResult = await compiler.wait();
+
+    if (!compileResult.ok) {
+
+      throw new Error(
+        "ERROR DE COMPILACIÓ\n\n" +
+        "Codi: " + compileResult.code + "\n\n" +
+        "Sortida:\n" + (compileResult.stdout || "") +
+        "\nErrors:\n" + (compileResult.stderr || "")
+      );
+    }
+
+
+    // Obtener WebAssembly
+    setStatus("Compilació correcta. Preparant l'execució...");
+
+    const wasm = await project.readFile("main.wasm");
+
+    downloadFile(
+      wasm,
+      "main.wasm",
+      "application/wasm"
     );
 
 
-    // ==========================================
-    // 2. GUARDAR REFERÈNCIES ALS ELEMENTS
-    // ==========================================
+    // Ejecutar
+    setStatus("Executant el programa C...");
 
-    /*
-      Guardem en variables els elements de la pàgina
-      que necessitarem controlar.
+    const program = await Wasmer.fromFile(wasm);
 
-      Així no cal buscar-los cada vegada que els utilitzem.
-    */
+    const execution = await program.entrypoint.run();
 
-    const status = document.getElementById("status");
-    // Zona on mostrarem els missatges d'estat.
+    const result = await execution.wait();
 
-    const output = document.getElementById("output");
-    // Zona on apareixerà el resultat del programa.
 
-    const downloads = document.getElementById("downloads");
-    // Zona on posarem els enllaços de descàrrega.
+    // Comprobar ejecución
+    if (!result.ok) {
 
-    const runButton = document.getElementById("run");
-    // Guardem el botó de compilar i executar.
-
-
-    // ==========================================
-    // 3. VARIABLES DE CONTROL
-    // ==========================================
-
-    /*
-      Una variable és un espai on guardem informació.
-
-      initialized:
-        Ens indica si el sistema ja està preparat.
-
-      clang:
-        Guardarà el compilador C que descarregarem.
-    */
-
-    let initialized = false;
-    let clang = null;
-
-
-    // ==========================================
-    // 4. FUNCIÓ PER CANVIAR EL MISSATGE D'ESTAT
-    // ==========================================
-
-    /*
-      Una funció és un conjunt d'instruccions
-      que podem executar quan necessitem.
-
-      Aquesta funció rep un missatge i el mostra
-      a la zona d'estat de la pàgina.
-    */
-
-    function setStatus(message) {
-      status.textContent = message;
-    }
-
-
-    // ==========================================
-    // 5. COMPROVAR SI EL NAVEGADOR ESTÀ PREPARAT
-    // ==========================================
-
-    /*
-      Per executar WebAssembly necessitem unes
-      característiques especials del navegador.
-
-      crossOriginIsolated:
-        Comprova si la pàgina està aïllada correctament.
-
-      SharedArrayBuffer:
-        És una eina del navegador que permet compartir
-        informació entre diferents processos.
-
-      Si les dues condicions es compleixen, retornem true.
-      Si no, retornem false.
-    */
-
-    function checkIsolation() {
-      return window.crossOriginIsolated &&
-        typeof SharedArrayBuffer !== "undefined";
-    }
-
-
-    // ==========================================
-    // 6. CREAR ENLLAÇOS PER DESCARREGAR FITXERS
-    // ==========================================
-
-    /*
-      Aquesta funció serveix per crear un fitxer
-      descarregable a partir de la informació que rebem.
-
-      Rep tres dades:
-
-      data:
-        El contingut que volem guardar.
-
-      filename:
-        El nom que tindrà el fitxer.
-
-      type:
-        El tipus de fitxer (text, WebAssembly, etc.).
-    */
-
-    function downloadFile(data, filename, type) {
-
-      // Creem un fitxer temporal amb les dades rebudes.
-      const blob = new Blob([data], { type });
-
-      // Creem una adreça temporal per poder accedir al fitxer.
-      const url = URL.createObjectURL(blob);
-
-      // Creem un enllaç HTML.
-      const link = document.createElement("a");
-
-      // Li indiquem on es troba el fitxer.
-      link.href = url;
-
-      // Li indiquem quin nom tindrà quan es descarregui.
-      link.download = filename;
-
-      // Text que veurà l'usuari.
-      link.textContent = "Descarregar " + filename;
-
-      // Li apliquem l'estil dels enllaços de descàrrega.
-      link.className = "download";
-
-      // Afegim l'enllaç a la pàgina.
-      downloads.appendChild(link);
-
-      // Afegim un salt de línia després de l'enllaç.
-      downloads.appendChild(document.createElement("br"));
-    }
-
-
-    // ==========================================
-    // 7. PREPARAR EL COMPILADOR C
-    // ==========================================
-
-    /*
-      Aquesta funció prepara tot el necessari
-      per poder compilar programes escrits en C.
-
-      async:
-        Indica que la funció pot fer operacions
-        que necessiten temps, com descarregar fitxers.
-
-      await:
-        Significa que esperem que una operació
-        acabi abans de continuar.
-    */
-
-    async function initialize() {
-
-      // Si ja està preparat, no cal tornar-ho a fer.
-      if (initialized) return;
-
-      // Comprovem que el navegador estigui aïllat.
-      if (!checkIsolation()) {
-
-        // Si no ho està, mostrem un error.
-        throw new Error(
-          "El navegador no està aïllat.\n" +
-          "Comprova coi-serviceworker.js i recarrega la pàgina."
-        );
-      }
-
-      // Informem que estem preparant WebAssembly.
-      setStatus("Inicialitzant WebAssembly...");
-
-      // Inicialitzem el sistema Wasmer.
-      await init();
-
-      // Informem que estem descarregant el compilador.
-      setStatus("Descarregant Clang (primera vegada pot trigar)...");
-
-      /*
-        Descarreguem Clang des del registre de Wasmer.
-
-        Clang és el compilador que transforma
-        el nostre codi escrit en C en un programa
-        que després es podrà executar.
-      */
-      clang = await Wasmer.fromRegistry("clang/clang");
-
-      // Indiquem que la preparació ja ha acabat.
-      initialized = true;
-
-      setStatus("Compilador C preparat.");
-    }
-
-
-    // ==========================================
-    // 8. COMPILAR I EXECUTAR EL PROGRAMA
-    // ==========================================
-
-    /*
-      Aquesta és la funció més important de tot el codi.
-
-      És la que s'executa quan premem el botó
-      "Compilar i executar".
-
-      Fa tots els passos necessaris:
-      1. Prepara el compilador.
-      2. Llegeix el codi escrit.
-      3. Crea un fitxer C.
-      4. Compila el fitxer.
-      5. Obté el programa WebAssembly.
-      6. Executa el programa.
-      7. Mostra el resultat.
-    */
-
-    async function compileAndRun() {
-
-      // Desactivem el botó per evitar diverses execucions simultànies.
-      runButton.disabled = true;
-
-      // Esborrem el resultat anterior.
-      output.textContent = "";
-
-      // Esborrem els enllaços de descàrrega anteriors.
-      downloads.innerHTML = "";
-
-      /*
-        try significa que intentarem executar les instruccions.
-
-        Si alguna cosa falla, saltarem al bloc catch.
-      */
-      try {
-
-        // --------------------------------------
-        // PAS 1. PREPARAR EL COMPILADOR
-        // --------------------------------------
-
-        await initialize();
-
-        // --------------------------------------
-        // PAS 2. LLEGIR EL CODI DE L'EDITOR
-        // --------------------------------------
-
-        /*
-          getValue() agafa tot el text que hi ha escrit
-          a l'editor i el guarda dins de la variable source.
-
-          És a dir, obtenim el programa C que ha escrit l'usuari.
-        */
-        const source = editor.getValue();
-
-
-        // --------------------------------------
-        // PAS 3. CREAR UNA CARPETA VIRTUAL
-        // --------------------------------------
-
-        setStatus("Preparant el fitxer C...");
-
-        /*
-          Creem una carpeta virtual.
-
-          Una carpeta virtual és una carpeta que existeix
-          dins del sistema de Wasmer, no necessàriament
-          com una carpeta real de l'ordinador.
-        */
-        const project = new Directory();
-
-        /*
-          Guardem el codi dins d'un fitxer anomenat main.c.
-
-          main.c és el nom del fitxer que contindrà
-          el nostre programa escrit en llenguatge C.
-        */
-        await project.writeFile("main.c", source);
-
-
-        // --------------------------------------
-        // PAS 4. COMPILAR EL PROGRAMA C
-        // --------------------------------------
-
-        setStatus("Compilant amb Clang...");
-
-        /*
-          Ara demanem a Clang que transformi el fitxer C
-          en un fitxer WebAssembly.
-
-          args són les instruccions que rep el compilador:
-
-          "/project/main.c"
-            És el fitxer C que volem compilar.
-
-          "-o"
-            Vol dir que volem indicar el nom del fitxer
-            de sortida.
-
-          "/project/main.wasm"
-            És el nom del fitxer que es crearà.
-
-          mount:
-            Connecta la carpeta virtual del projecte
-            amb la ruta /project que utilitza el compilador.
-        */
-
-        const compiler = await clang.entrypoint.run({
-          args: [
-            "/project/main.c",
-            "-o",
-            "/project/main.wasm"
-          ],
-          mount: {
-            "/project": project
-          }
-        });
-
-        // Esperem que el compilador acabi de treballar.
-        const compileResult = await compiler.wait();
-
-
-        /*
-          Comprovem si la compilació ha funcionat.
-
-          ok és true si tot ha anat bé.
-          Si és false, vol dir que hi ha hagut algun error.
-        */
-
-        if (!compileResult.ok) {
-
-          // Mostrem els errors que ha detectat Clang.
-          throw new Error(
-            "ERROR DE COMPILACIÓ\n\n" +
-            "Codi: " + compileResult.code + "\n\n" +
-            "Sortida:\n" + (compileResult.stdout || "") +
-            "\nErrors:\n" + (compileResult.stderr || "")
-          );
-        }
-
-
-        // --------------------------------------
-        // PAS 5. OBTENIR EL FITXER WEBASSEMBLY
-        // --------------------------------------
-
-        setStatus("Compilació correcta. Preparant l'execució...");
-
-        /*
-          La compilació ha creat main.wasm.
-
-          Ara llegim aquest fitxer i el guardem
-          dins de la variable wasm.
-        */
-        const wasm = await project.readFile("main.wasm");
-
-        /*
-          També creem un enllaç perquè l'usuari
-          pugui descarregar el fitxer WebAssembly.
-        */
-        downloadFile(
-          wasm,
-          "main.wasm",
-          "application/wasm"
-        );
-
-
-        // --------------------------------------
-        // PAS 6. EXECUTAR EL PROGRAMA
-        // --------------------------------------
-
-        setStatus("▶ Executant el programa C...");
-
-        /*
-          Carreguem el fitxer WebAssembly amb Wasmer.
-
-          Això prepara el programa perquè es pugui executar.
-        */
-        const program = await Wasmer.fromFile(wasm);
-
-        /*
-          Iniciem l'execució del programa.
-
-          És en aquest moment quan s'executen
-          les instruccions printf del programa C.
-        */
-        const execution = await program.entrypoint.run();
-
-        // Esperem que el programa acabi.
-        const result = await execution.wait();
-
-
-        // --------------------------------------
-        // PAS 7. COMPROVAR SI L'EXECUCIÓ HA ANAT BÉ
-        // --------------------------------------
-
-        if (!result.ok) {
-
-          /*
-            Si el programa ha fallat durant l'execució,
-            mostrem el codi d'error i els missatges
-            que hagi generat.
-          */
-          throw new Error(
-            "ERROR D'EXECUCIÓ\n\n" +
-            "Codi: " + result.code + "\n\n" +
-            "Sortida:\n" + (result.stdout || "") +
-            "\nErrors:\n" + (result.stderr || "")
-          );
-        }
-
-
-        // --------------------------------------
-        // PAS 8. MOSTRAR EL RESULTAT A LA CONSOLA
-        // --------------------------------------
-
-        /*
-          stdout conté el text que ha escrit el programa
-          mitjançant instruccions com printf.
-
-          result.code és el codi de sortida del programa.
-
-          Normalment, 0 significa que ha acabat correctament.
-        */
-
-        output.textContent =
-          "=== PROGRAMA EXECUTAT CORRECTAMENT ===\n\n" +
-          (result.stdout || "(El programa no ha generat cap sortida)") +
-          "\n\nCodi de sortida: " + result.code;
-
-
-        // Si hi ha missatges addicionals d'error o diagnòstic,
-        // també els mostrem a la consola.
-        if (result.stderr) {
-
-          output.textContent +=
-            "\n\n=== MISSATGES D'ERROR ===\n" +
-            result.stderr;
-        }
-
-        // Informem que tot ha acabat correctament.
-        setStatus("✓ Compilació i execució completades.");
-
-
-      } catch (error) {
-
-        /*
-          Aquest bloc s'executa si alguna instrucció
-          del try ha provocat un error.
-
-          console.error:
-            Envia informació de l'error a la consola
-            interna del navegador.
-
-          setStatus:
-            Mostra que hi ha hagut un error.
-
-          error.message:
-            Mostra l'explicació de l'error.
-        */
-
-        console.error(error);
-
-        setStatus("✗ Error");
-
-        output.textContent =
-          error?.message || String(error);
-
-
-      } finally {
-
-        /*
-          finally s'executa sempre, tant si tot ha anat bé
-          com si hi ha hagut algun error.
-
-          Tornem a activar el botó perquè l'usuari
-          pugui tornar a executar el programa.
-        */
-
-        runButton.disabled = false;
-      }
-    }
-
-
-    // ==========================================
-    // 9. CONNECTAR EL BOTÓ D'EXECUTAR
-    // ==========================================
-
-    /*
-      addEventListener significa que estem escoltant
-      si l'usuari fa alguna acció.
-
-      "click" vol dir que esperem que faci clic.
-
-      Quan ho fa, executem la funció compileAndRun.
-    */
-
-    runButton.addEventListener("click", compileAndRun);
-
-
-    // ==========================================
-    // 10. CONNECTAR EL BOTÓ DE COPIAR
-    // ==========================================
-
-    /*
-      Quan premem el botó Copiar codi:
-      1. Llegim el contingut de l'editor.
-      2. El copiem al porta-retalls de l'ordinador.
-      3. Mostrem un missatge confirmant-ho.
-    */
-
-    document.getElementById("copy").addEventListener("click", async () => {
-
-      try {
-
-        // Copiem el codi de l'editor.
-        await navigator.clipboard.writeText(editor.getValue());
-
-        // Informem que s'ha copiat correctament.
-        setStatus("Codi copiat.");
-
-      } catch (error) {
-
-        // Si falla, mostrem el motiu.
-        setStatus("No s'ha pogut copiar el codi: " + error.message);
-      }
-    });
-
-
-    // ==========================================
-    // 11. CONNECTAR EL BOTÓ DE DESCARREGAR C
-    // ==========================================
-
-    /*
-      Quan premem Descarregar .c:
-      1. Llegim el codi de l'editor.
-      2. Creem un fitxer anomenat main.c.
-      3. Preparem l'enllaç per descarregar-lo.
-    */
-
-    document.getElementById("downloadC").addEventListener("click", () => {
-
-      downloadFile(
-        editor.getValue(),  // Contingut del fitxer.
-        "main.c",           // Nom del fitxer.
-        "text/plain"        // Tipus de contingut.
-      );
-
-      setStatus("Fitxer C preparat.");
-    });
-
-
-    // ==========================================
-    // 12. COMPROVACIÓ INICIAL DEL NAVEGADOR
-    // ==========================================
-
-    /*
-      Quan s'obre la pàgina, comprovem si el navegador
-      compleix els requisits necessaris.
-
-      Si està preparat, animem l'usuari a prémer el botó.
-
-      Si no ho està, indiquem que cal recarregar la pàgina.
-    */
-
-    if (checkIsolation()) {
-
-      setStatus("✓ Navegador aïllat. Prem Compilar i executar.");
-
-    } else {
-
-      setStatus(
-        "Esperant l'aïllament del navegador. Recarrega la pàgina."
+      throw new Error(
+        "ERROR D'EXECUCIÓ\n\n" +
+        "Codi: " + result.code + "\n\n" +
+        "Sortida:\n" + (result.stdout || "") +
+        "\nErrors:\n" + (result.stderr || "")
       );
     }
 
-  </script>
+
+    // Mostrar resultado
+    output.textContent =
+      "=== PROGRAMA EXECUTAT CORRECTAMENT ===\n\n" +
+      (result.stdout || "(El programa no ha generat cap sortida)") +
+      "\n\nCodi de sortida: " + result.code;
+
+
+    if (result.stderr) {
+
+      output.textContent +=
+        "\n\n=== MISSATGES D'ERROR ===\n" +
+        result.stderr;
+    }
+
+    setStatus("✓ Compilació i execució completades.");
+
+  } catch (error) {
+
+    console.error(error);
+
+    setStatus("✗ Error");
+
+    output.textContent =
+      error?.message || String(error);
+
+  } finally {
+
+    runButton.disabled = false;
+
+  }
+}
+
+
+// 9. BOTÓN EJECUTAR
+
+runButton.addEventListener("click", compileAndRun);
+
+
+// 10. BOTÓN COPIAR
+
+document.getElementById("copy").addEventListener("click", async () => {
+
+  try {
+
+    await navigator.clipboard.writeText(editor.getValue());
+
+    setStatus("Codi copiat.");
+
+  } catch (error) {
+
+    setStatus("No s'ha pogut copiar el codi: " + error.message);
+
+  }
+
+});
+
+
+// 11. BOTÓN DESCARGAR C
+
+document.getElementById("downloadC").addEventListener("click", () => {
+
+  downloads.innerHTML = "";
+
+  downloadFile(
+    editor.getValue(),
+    "main.c",
+    "text/plain"
+  );
+
+  setStatus("Fitxer C preparat.");
+
+});
+
+
+// 12. COMPROBACIÓN INICIAL
+
+if (checkIsolation()) {
+
+  setStatus("✓ Navegador aïllat. Prem Compilar i executar.");
+
+} else {
+
+  setStatus(
+    "Esperant l'aïllament del navegador. Recarrega la pàgina."
+  );
+
+}
+
+</script>
 
 </body>
 </html>
